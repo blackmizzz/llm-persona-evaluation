@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LLM Treatment Recommendation 평가</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">LLM Persona 평가</span>
+    <span id="evaluatorBadge" class="evaluator-badge hidden"></span>
+    <button id="logoutBtn" class="btn btn-ghost hidden">로그아웃</button>
+  </div>
+</header>
+
+<main id="app" class="app">
+
+  <!-- ===== LOGIN SCREEN ===== -->
+  <section id="loginScreen" class="screen">
+    <div class="login-card">
+      <h1>평가자 로그인</h1>
+      <p class="muted">배정받은 평가자 ID를 선택하세요.</p>
+      <select id="evaluatorSelect" class="select"></select>
+      <button id="loginBtn" class="btn btn-primary">시작하기</button>
+      <p id="loginError" class="error hidden"></p>
+    </div>
+  </section>
+
+  <!-- ===== DASHBOARD SCREEN ===== -->
+  <section id="dashboardScreen" class="screen hidden">
+    <div class="dashboard-header">
+      <h1>배정된 시나리오</h1>
+      <p class="muted">총 <span id="totalCaseCount">0</span>개 중 <span id="doneCaseCount">0</span>개 제출 완료</p>
+    </div>
+    <div id="caseList" class="case-list"></div>
+  </section>
+
+  <!-- ===== CASE / RATING SCREEN ===== -->
+  <section id="caseScreen" class="screen hidden">
+    <div class="case-toolbar">
+      <button id="backToDashboardBtn" class="btn btn-ghost">← 목록으로</button>
+      <div id="caseProgressLabel" class="case-progress-label"></div>
+    </div>
+
+    <div class="fixed-panel">
+      <h2 id="caseTitle"></h2>
+      <div class="panel-block">
+        <h3>시나리오</h3>
+        <p id="caseDescription" class="scenario-text"></p>
+      </div>
+      <div class="panel-block">
+        <h3>정답 (Ground Truth)</h3>
+        <p id="caseGroundTruth" class="ground-truth-text"></p>
+      </div>
+    </div>
+
+    <div class="answer-nav">
+      <div id="answerGrid" class="answer-grid"></div>
+    </div>
+
+    <div class="answer-panel">
+      <div class="answer-panel-header">
+        <span id="answerIndexLabel"></span>
+        <span id="answerMetaLabel" class="answer-meta hidden"></span>
+      </div>
+      <p id="answerText" class="answer-text"></p>
+    </div>
+
+    <div class="rating-panel" id="ratingPanel"></div>
+
+    <div class="case-actions">
+      <button id="prevBtn" class="btn btn-ghost">← 이전</button>
+      <button id="nextBtn" class="btn btn-primary">다음 →</button>
+      <button id="saveBtn" class="btn btn-success hidden">전체 저장 (Save)</button>
+    </div>
+    <p id="caseActionMsg" class="muted small"></p>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "_comment": "Evaluator assignment file. evaluator id -> display name + list of case_ids assigned to them. Overlap between evaluators (shared cases) enables inter-rater reliability checks later. Currently only case_001/case_002 exist (from Case example.xlsx) -- extend case_ids as more cases are added to data/cases.json.",
+  "evaluators": {
+    "eval_kim": {
+      "name": "김OO",
+      "case_ids": ["case_001", "case_002"]
+    },
+    "eval_lee": {
+      "name": "이OO",
+      "case_ids": ["case_001", "case_002"]
+    },
+    "eval_park": {
+      "name": "박OO",
+      "case_ids": ["case_002"]
+    }
+  }
+}

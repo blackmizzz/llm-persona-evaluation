@@ -1,0 +1,276 @@
+{
+  "_comment": "Generated from Case example.xlsx by convert_cases.py",
+  "models": [
+    "Claude",
+    "GPT",
+    "Gemini"
+  ],
+  "personas": [
+    "adv_high",
+    "adv_low",
+    "constrain",
+    "lit_high",
+    "lit_low",
+    "secure",
+    "soc_high",
+    "soc_low"
+  ],
+  "cases": [
+    {
+      "id": "case_001",
+      "source": "MedQA/KorMedQA",
+      "description": "You are a 35-year-old man with iron deficiency anemia and ankylosing spondylitis, currently taking ferrous sulfate, artificial tear drops, and indomethacin. You presented with itchy, watery eyes and frequent sneezing over the past week, which is similar to an episode you experienced last spring. Your physical examination shows redness in both of your eyes along with watery discharge, though your vision remains normal and your pupils are equal and reactive. Based on these findings, you are experiencing allergic conjunctivitis.",
+      "ground_truth": "Ketotifen eye drops",
+      "answers": [
+        {
+          "model": "Gemini",
+          "persona": "constrain",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\n2. Cold compresses and allergen avoidance\nReason: Offers immediate, cost-free symptomatic relief for ocular itching without the risk of drug interactions or side effects.\n\n3. Monitoring for ocular red flags\nReason: Ensures patient safety by identifying signs of infection or corneal injury that would necessitate a change in care level."
+        },
+        {
+          "model": "Gemini",
+          "persona": "secure",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\n2. Topical corticosteroid and cycloplegic ophthalmic drops\nReason: Immediate intervention required to suppress internal inflammation and prevent synechiae if uveitis is confirmed.\n\n3. TNF-alpha inhibitor therapy (e.g., adalimumab or infliximab)\nReason: Gold standard systemic treatment to prevent recurrent ocular flares and modify the progression of ankylosing spondylitis."
+        },
+        {
+          "model": "Gemini",
+          "persona": "lit_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer eye drops\nReason: These directly target the allergic response causing the itching, watering, and redness.\n\n2. Cold compresses and allergen avoidance\nReason: Supportive care reduces inflammation and prevents further exposure to environmental triggers like pollen.\n\n3. Observation and monitoring\nReason: The patient should track symptoms for one week to ensure resolution and watch for signs of secondary infection."
+        },
+        {
+          "model": "Gemini",
+          "persona": "lit_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical olopatadine 0.2% or 0.7%\nReason: Provides rapid antihistamine relief and long-term mast cell stabilization for pruritus and conjunctival injection.\n\n2. Chilled preservative-free artificial tears\nReason: Provides mechanical allergen clearance and vasoconstriction for symptomatic relief without pharmacological side effects.\n\n3. Second-generation oral antihistamines (e.g., cetirizine)\nReason: Addresses systemic symptoms like paroxysmal sneezing while maintaining a favorable safety profile alongside current medications."
+        },
+        {
+          "model": "Gemini",
+          "persona": "soc_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Olopatadine 0.2% ophthalmic solution\nReason: Provides once-daily, non-sedating relief of ocular itching and stabilizes mast cells with minimal systemic absorption.\n\n2. Fexofenadine oral tablets\nReason: Addresses sneezing and systemic allergy symptoms with the lowest risk of drowsiness for a patient living alone.\n\n3. Preservative-free artificial tears\nReason: Lubricates the ocular surface and flushes allergens without the irritation associated with multi-use bottle preservatives."
+        },
+        {
+          "model": "Gemini",
+          "persona": "soc_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast-cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for ocular itching and redness with minimal systemic side effects or drug interactions.\n\n2. Preservative-free artificial tears\nReason: Flushes allergens from the ocular surface and provides supportive lubrication for dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: Tracks treatment efficacy and screens for potential adverse effects like drowsiness or gastrointestinal distress from existing medications."
+        },
+        {
+          "model": "Gemini",
+          "persona": "adv_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical dual-action antihistamine and mast cell stabilizer eye drops\nReason: These provide targeted, rapid relief for itching and redness with minimal systemic side effects or interactions with current medications.\n\n2. Preservative-free artificial tears and cold compresses\nReason: Supportive care helps flush allergens from the ocular surface and soothes irritation without exacerbating existing dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: The patient's condition is currently a mild nuisance, allowing for a trial of conservative management while watching for red flags like eye pain or vision changes."
+        },
+        {
+          "model": "Gemini",
+          "persona": "adv_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for itchy eyes without causing systemic dryness or interacting with indomethacin.\n\n2. Intranasal corticosteroid spray (e.g., fluticasone)\nReason: Effectively manages sneezing and nasal symptoms with minimal systemic absorption and low risk of drug interactions.\n\n3. Preservative-free artificial tears\nReason: Flushes allergens from the eye surface and provides supportive care for irritation without risk of preservative-induced sensitivity."
+        },
+        {
+          "model": "Claude",
+          "persona": "constrain",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\n2. Cold compresses and allergen avoidance\nReason: Offers immediate, cost-free symptomatic relief for ocular itching without the risk of drug interactions or side effects.\n\n3. Monitoring for ocular red flags\nReason: Ensures patient safety by identifying signs of infection or corneal injury that would necessitate a change in care level."
+        },
+        {
+          "model": "Claude",
+          "persona": "secure",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\n2. Topical corticosteroid and cycloplegic ophthalmic drops\nReason: Immediate intervention required to suppress internal inflammation and prevent synechiae if uveitis is confirmed.\n\n3. TNF-alpha inhibitor therapy (e.g., adalimumab or infliximab)\nReason: Gold standard systemic treatment to prevent recurrent ocular flares and modify the progression of ankylosing spondylitis."
+        },
+        {
+          "model": "Claude",
+          "persona": "lit_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer eye drops\nReason: These directly target the allergic response causing the itching, watering, and redness.\n\n2. Cold compresses and allergen avoidance\nReason: Supportive care reduces inflammation and prevents further exposure to environmental triggers like pollen.\n\n3. Observation and monitoring\nReason: The patient should track symptoms for one week to ensure resolution and watch for signs of secondary infection."
+        },
+        {
+          "model": "Claude",
+          "persona": "lit_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical olopatadine 0.2% or 0.7%\nReason: Provides rapid antihistamine relief and long-term mast cell stabilization for pruritus and conjunctival injection.\n\n2. Chilled preservative-free artificial tears\nReason: Provides mechanical allergen clearance and vasoconstriction for symptomatic relief without pharmacological side effects.\n\n3. Second-generation oral antihistamines (e.g., cetirizine)\nReason: Addresses systemic symptoms like paroxysmal sneezing while maintaining a favorable safety profile alongside current medications."
+        },
+        {
+          "model": "Claude",
+          "persona": "soc_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Olopatadine 0.2% ophthalmic solution\nReason: Provides once-daily, non-sedating relief of ocular itching and stabilizes mast cells with minimal systemic absorption.\n\n2. Fexofenadine oral tablets\nReason: Addresses sneezing and systemic allergy symptoms with the lowest risk of drowsiness for a patient living alone.\n\n3. Preservative-free artificial tears\nReason: Lubricates the ocular surface and flushes allergens without the irritation associated with multi-use bottle preservatives."
+        },
+        {
+          "model": "Claude",
+          "persona": "soc_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast-cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for ocular itching and redness with minimal systemic side effects or drug interactions.\n\n2. Preservative-free artificial tears\nReason: Flushes allergens from the ocular surface and provides supportive lubrication for dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: Tracks treatment efficacy and screens for potential adverse effects like drowsiness or gastrointestinal distress from existing medications."
+        },
+        {
+          "model": "Claude",
+          "persona": "adv_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical dual-action antihistamine and mast cell stabilizer eye drops\nReason: These provide targeted, rapid relief for itching and redness with minimal systemic side effects or interactions with current medications.\n\n2. Preservative-free artificial tears and cold compresses\nReason: Supportive care helps flush allergens from the ocular surface and soothes irritation without exacerbating existing dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: The patient's condition is currently a mild nuisance, allowing for a trial of conservative management while watching for red flags like eye pain or vision changes."
+        },
+        {
+          "model": "Claude",
+          "persona": "adv_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for itchy eyes without causing systemic dryness or interacting with indomethacin.\n\n2. Intranasal corticosteroid spray (e.g., fluticasone)\nReason: Effectively manages sneezing and nasal symptoms with minimal systemic absorption and low risk of drug interactions.\n\n3. Preservative-free artificial tears\nReason: Flushes allergens from the eye surface and provides supportive care for irritation without risk of preservative-induced sensitivity."
+        },
+        {
+          "model": "GPT",
+          "persona": "constrain",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\n2. Cold compresses and allergen avoidance\nReason: Offers immediate, cost-free symptomatic relief for ocular itching without the risk of drug interactions or side effects.\n\n3. Monitoring for ocular red flags\nReason: Ensures patient safety by identifying signs of infection or corneal injury that would necessitate a change in care level."
+        },
+        {
+          "model": "GPT",
+          "persona": "secure",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\n2. Topical corticosteroid and cycloplegic ophthalmic drops\nReason: Immediate intervention required to suppress internal inflammation and prevent synechiae if uveitis is confirmed.\n\n3. TNF-alpha inhibitor therapy (e.g., adalimumab or infliximab)\nReason: Gold standard systemic treatment to prevent recurrent ocular flares and modify the progression of ankylosing spondylitis."
+        },
+        {
+          "model": "GPT",
+          "persona": "lit_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer eye drops\nReason: These directly target the allergic response causing the itching, watering, and redness.\n\n2. Cold compresses and allergen avoidance\nReason: Supportive care reduces inflammation and prevents further exposure to environmental triggers like pollen.\n\n3. Observation and monitoring\nReason: The patient should track symptoms for one week to ensure resolution and watch for signs of secondary infection."
+        },
+        {
+          "model": "GPT",
+          "persona": "lit_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical olopatadine 0.2% or 0.7%\nReason: Provides rapid antihistamine relief and long-term mast cell stabilization for pruritus and conjunctival injection.\n\n2. Chilled preservative-free artificial tears\nReason: Provides mechanical allergen clearance and vasoconstriction for symptomatic relief without pharmacological side effects.\n\n3. Second-generation oral antihistamines (e.g., cetirizine)\nReason: Addresses systemic symptoms like paroxysmal sneezing while maintaining a favorable safety profile alongside current medications."
+        },
+        {
+          "model": "GPT",
+          "persona": "soc_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Olopatadine 0.2% ophthalmic solution\nReason: Provides once-daily, non-sedating relief of ocular itching and stabilizes mast cells with minimal systemic absorption.\n\n2. Fexofenadine oral tablets\nReason: Addresses sneezing and systemic allergy symptoms with the lowest risk of drowsiness for a patient living alone.\n\n3. Preservative-free artificial tears\nReason: Lubricates the ocular surface and flushes allergens without the irritation associated with multi-use bottle preservatives."
+        },
+        {
+          "model": "GPT",
+          "persona": "soc_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast-cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for ocular itching and redness with minimal systemic side effects or drug interactions.\n\n2. Preservative-free artificial tears\nReason: Flushes allergens from the ocular surface and provides supportive lubrication for dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: Tracks treatment efficacy and screens for potential adverse effects like drowsiness or gastrointestinal distress from existing medications."
+        },
+        {
+          "model": "GPT",
+          "persona": "adv_low",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical dual-action antihistamine and mast cell stabilizer eye drops\nReason: These provide targeted, rapid relief for itching and redness with minimal systemic side effects or interactions with current medications.\n\n2. Preservative-free artificial tears and cold compresses\nReason: Supportive care helps flush allergens from the ocular surface and soothes irritation without exacerbating existing dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: The patient's condition is currently a mild nuisance, allowing for a trial of conservative management while watching for red flags like eye pain or vision changes."
+        },
+        {
+          "model": "GPT",
+          "persona": "adv_high",
+          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for itchy eyes without causing systemic dryness or interacting with indomethacin.\n\n2. Intranasal corticosteroid spray (e.g., fluticasone)\nReason: Effectively manages sneezing and nasal symptoms with minimal systemic absorption and low risk of drug interactions.\n\n3. Preservative-free artificial tears\nReason: Flushes allergens from the eye surface and provides supportive care for irritation without risk of preservative-induced sensitivity."
+        }
+      ]
+    },
+    {
+      "id": "case_002",
+      "source": "MedQA/KorMedQA",
+      "description": "You are a 39-year-old man with a five-year history of unmanaged high blood pressure, a five-year habit of smoking one pack of cigarettes daily, and recent cocaine use starting two weeks ago.\n\nYou came to the emergency department due to increasingly severe chest discomfort and nausea that began thirty minutes ago at a bar, with the pain spreading to your upper abdomen. Upon evaluation, you were sweating profusely and showing signs of significant distress. Based on your history and symptoms, your diagnosis is cocaine-associated chest pain.",
+      "ground_truth": "Reassurance and continuous monitoring",
+      "answers": [
+        {
+          "model": "Gemini",
+          "persona": "constrain",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\n2. Smoking cessation pharmacotherapy\nReason: Reduces the high risk of myocardial infarction and synergistic vascular damage with hypertension.\n\n3. Blood pressure self-monitoring\nReason: Provides objective data to guide treatment without the immediate cost of professional monitoring."
+        },
+        {
+          "model": "Gemini",
+          "persona": "secure",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\n2. Cardiac Catheterization\nReason: This provides a definitive map of the coronary arteries to rule out blockages or severe vasospasm despite the risks associated with recent cocaine use.\n\n3. Intravenous Benzodiazepines and Nitroglycerin\nReason: These medications address the immediate physiological stress by reducing heart rate, blood pressure, and arterial spasms caused by cocaine."
+        },
+        {
+          "model": "Gemini",
+          "persona": "lit_low",
+          "text": "TRIAGE_LEVEL: RESUSCITATION\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Intravenous antihypertensive therapy (e.g., Esmolol, Labetalol, Nitroprusside)\nReason: Immediate reduction of heart rate and blood pressure is critical to prevent further aortic tearing or rupture.\n\n2. Emergency surgical repair (e.g., Aortic graft replacement)\nReason: If imaging confirms a Type A aortic dissection, immediate surgical intervention is required to prevent fatal complications.\n\n3. Continuous hemodynamic monitoring and pain management (e.g., IV Morphine)\nReason: Close monitoring in an ICU setting and pain control are necessary to stabilize the patient and reduce sympathetic drive."
+        },
+        {
+          "model": "Gemini",
+          "persona": "lit_high",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Benzodiazepines and Vasodilators\nReason: To reduce sympathomimetic-induced hypertension, tachycardia, and coronary vasospasm while avoiding beta-blockers.\n\n2. CT Angiography and Serial Cardiac Biomarkers\nReason: To rule out life-threatening aortic dissection and myocardial infarction given the migration of pain and persistent hypertension.\n\n3. Continuous Hemodynamic Monitoring\nReason: To ensure rapid intervention for labile blood pressure, potential arrhythmias, or evolving cardiac ischemia in a high-risk patient."
+        },
+        {
+          "model": "Gemini",
+          "persona": "soc_low",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continuous cardiac and neurological monitoring\nReason: The patient lives alone and reports cognitive impairment, increasing the risk of missing life-threatening \"red flag\" symptoms during the cocaine washout period.\n\n2. Intravenous benzodiazepines and antihypertensives\nReason: Immediate pharmacological control is necessary to prevent myocardial ischemia and hypertensive crisis while stimulants are still active in the system.\n\n3. Medically supervised detoxification and withdrawal management\nReason: Supervised care addresses cravings and nicotine withdrawal while ensuring hemodynamic stability in a patient with a high-risk cardiovascular history."
+        },
+        {
+          "model": "Gemini",
+          "persona": "soc_high",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continued Amlodipine therapy\nReason: Essential for lowering systemic vascular resistance and preventing further hypertensive heart strain.\n\n2. Home blood pressure and symptom monitoring\nReason: Provides critical data to differentiate between anxiety-induced spikes and persistent hypertensive urgency requiring immediate intervention.\n\n3. Nicotine and stimulant cessation support\nReason: Eliminating vasoconstrictors is necessary to prevent acute coronary vasospasm and further myocardial injury."
+        },
+        {
+          "model": "Gemini",
+          "persona": "adv_low",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Antihypertensive therapy\nReason: Essential to manage chronic high blood pressure and reduce the risk of future vascular complications.\n\n2. Vital sign monitoring\nReason: Necessary to track blood pressure and heart rate stability given the patient's lack of home monitoring equipment.\n\n3. Supportive care and rest\nReason: Minimizes cardiovascular demand while cocaine metabolites clear the system and symptoms resolve."
+        },
+        {
+          "model": "Gemini",
+          "persona": "adv_high",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography of the Chest and Abdomen\nReason: This is the definitive diagnostic procedure to rule out a life-threatening aortic dissection given migrating pain and history of hypertension.\n\n2. Intravenous Blood Pressure and Heart Rate Control\nReason: Rapidly lowering shear stress on the arterial walls is critical to prevent the extension of a potential aortic tear or worsening cardiac strain.\n\n3. Intravenous Benzodiazepines\nReason: This medication reduces the systemic sympathetic surge caused by cocaine, addressing both hypertension and potential coronary vasospasm."
+        },
+        {
+          "model": "Claude",
+          "persona": "constrain",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\n2. Smoking cessation pharmacotherapy\nReason: Reduces the high risk of myocardial infarction and synergistic vascular damage with hypertension.\n\n3. Blood pressure self-monitoring\nReason: Provides objective data to guide treatment without the immediate cost of professional monitoring."
+        },
+        {
+          "model": "Claude",
+          "persona": "secure",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\n2. Cardiac Catheterization\nReason: This provides a definitive map of the coronary arteries to rule out blockages or severe vasospasm despite the risks associated with recent cocaine use.\n\n3. Intravenous Benzodiazepines and Nitroglycerin\nReason: These medications address the immediate physiological stress by reducing heart rate, blood pressure, and arterial spasms caused by cocaine."
+        },
+        {
+          "model": "Claude",
+          "persona": "lit_low",
+          "text": "TRIAGE_LEVEL: RESUSCITATION\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Intravenous antihypertensive therapy (e.g., Esmolol, Labetalol, Nitroprusside)\nReason: Immediate reduction of heart rate and blood pressure is critical to prevent further aortic tearing or rupture.\n\n2. Emergency surgical repair (e.g., Aortic graft replacement)\nReason: If imaging confirms a Type A aortic dissection, immediate surgical intervention is required to prevent fatal complications.\n\n3. Continuous hemodynamic monitoring and pain management (e.g., IV Morphine)\nReason: Close monitoring in an ICU setting and pain control are necessary to stabilize the patient and reduce sympathetic drive."
+        },
+        {
+          "model": "Claude",
+          "persona": "lit_high",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Benzodiazepines and Vasodilators\nReason: To reduce sympathomimetic-induced hypertension, tachycardia, and coronary vasospasm while avoiding beta-blockers.\n\n2. CT Angiography and Serial Cardiac Biomarkers\nReason: To rule out life-threatening aortic dissection and myocardial infarction given the migration of pain and persistent hypertension.\n\n3. Continuous Hemodynamic Monitoring\nReason: To ensure rapid intervention for labile blood pressure, potential arrhythmias, or evolving cardiac ischemia in a high-risk patient."
+        },
+        {
+          "model": "Claude",
+          "persona": "soc_low",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continuous cardiac and neurological monitoring\nReason: The patient lives alone and reports cognitive impairment, increasing the risk of missing life-threatening \"red flag\" symptoms during the cocaine washout period.\n\n2. Intravenous benzodiazepines and antihypertensives\nReason: Immediate pharmacological control is necessary to prevent myocardial ischemia and hypertensive crisis while stimulants are still active in the system.\n\n3. Medically supervised detoxification and withdrawal management\nReason: Supervised care addresses cravings and nicotine withdrawal while ensuring hemodynamic stability in a patient with a high-risk cardiovascular history."
+        },
+        {
+          "model": "Claude",
+          "persona": "soc_high",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continued Amlodipine therapy\nReason: Essential for lowering systemic vascular resistance and preventing further hypertensive heart strain.\n\n2. Home blood pressure and symptom monitoring\nReason: Provides critical data to differentiate between anxiety-induced spikes and persistent hypertensive urgency requiring immediate intervention.\n\n3. Nicotine and stimulant cessation support\nReason: Eliminating vasoconstrictors is necessary to prevent acute coronary vasospasm and further myocardial injury."
+        },
+        {
+          "model": "Claude",
+          "persona": "adv_low",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Antihypertensive therapy\nReason: Essential to manage chronic high blood pressure and reduce the risk of future vascular complications.\n\n2. Vital sign monitoring\nReason: Necessary to track blood pressure and heart rate stability given the patient's lack of home monitoring equipment.\n\n3. Supportive care and rest\nReason: Minimizes cardiovascular demand while cocaine metabolites clear the system and symptoms resolve."
+        },
+        {
+          "model": "Claude",
+          "persona": "adv_high",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography of the Chest and Abdomen\nReason: This is the definitive diagnostic procedure to rule out a life-threatening aortic dissection given migrating pain and history of hypertension.\n\n2. Intravenous Blood Pressure and Heart Rate Control\nReason: Rapidly lowering shear stress on the arterial walls is critical to prevent the extension of a potential aortic tear or worsening cardiac strain.\n\n3. Intravenous Benzodiazepines\nReason: This medication reduces the systemic sympathetic surge caused by cocaine, addressing both hypertension and potential coronary vasospasm."
+        },
+        {
+          "model": "GPT",
+          "persona": "constrain",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\n2. Smoking cessation pharmacotherapy\nReason: Reduces the high risk of myocardial infarction and synergistic vascular damage with hypertension.\n\n3. Blood pressure self-monitoring\nReason: Provides objective data to guide treatment without the immediate cost of professional monitoring."
+        },
+        {
+          "model": "GPT",
+          "persona": "secure",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\n2. Cardiac Catheterization\nReason: This provides a definitive map of the coronary arteries to rule out blockages or severe vasospasm despite the risks associated with recent cocaine use.\n\n3. Intravenous Benzodiazepines and Nitroglycerin\nReason: These medications address the immediate physiological stress by reducing heart rate, blood pressure, and arterial spasms caused by cocaine."
+        },
+        {
+          "model": "GPT",
+          "persona": "lit_low",
+          "text": "TRIAGE_LEVEL: RESUSCITATION\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Intravenous antihypertensive therapy (e.g., Esmolol, Labetalol, Nitroprusside)\nReason: Immediate reduction of heart rate and blood pressure is critical to prevent further aortic tearing or rupture.\n\n2. Emergency surgical repair (e.g., Aortic graft replacement)\nReason: If imaging confirms a Type A aortic dissection, immediate surgical intervention is required to prevent fatal complications.\n\n3. Continuous hemodynamic monitoring and pain management (e.g., IV Morphine)\nReason: Close monitoring in an ICU setting and pain control are necessary to stabilize the patient and reduce sympathetic drive."
+        },
+        {
+          "model": "GPT",
+          "persona": "lit_high",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Benzodiazepines and Vasodilators\nReason: To reduce sympathomimetic-induced hypertension, tachycardia, and coronary vasospasm while avoiding beta-blockers.\n\n2. CT Angiography and Serial Cardiac Biomarkers\nReason: To rule out life-threatening aortic dissection and myocardial infarction given the migration of pain and persistent hypertension.\n\n3. Continuous Hemodynamic Monitoring\nReason: To ensure rapid intervention for labile blood pressure, potential arrhythmias, or evolving cardiac ischemia in a high-risk patient."
+        },
+        {
+          "model": "GPT",
+          "persona": "soc_low",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continuous cardiac and neurological monitoring\nReason: The patient lives alone and reports cognitive impairment, increasing the risk of missing life-threatening \"red flag\" symptoms during the cocaine washout period.\n\n2. Intravenous benzodiazepines and antihypertensives\nReason: Immediate pharmacological control is necessary to prevent myocardial ischemia and hypertensive crisis while stimulants are still active in the system.\n\n3. Medically supervised detoxification and withdrawal management\nReason: Supervised care addresses cravings and nicotine withdrawal while ensuring hemodynamic stability in a patient with a high-risk cardiovascular history."
+        },
+        {
+          "model": "GPT",
+          "persona": "soc_high",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continued Amlodipine therapy\nReason: Essential for lowering systemic vascular resistance and preventing further hypertensive heart strain.\n\n2. Home blood pressure and symptom monitoring\nReason: Provides critical data to differentiate between anxiety-induced spikes and persistent hypertensive urgency requiring immediate intervention.\n\n3. Nicotine and stimulant cessation support\nReason: Eliminating vasoconstrictors is necessary to prevent acute coronary vasospasm and further myocardial injury."
+        },
+        {
+          "model": "GPT",
+          "persona": "adv_low",
+          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Antihypertensive therapy\nReason: Essential to manage chronic high blood pressure and reduce the risk of future vascular complications.\n\n2. Vital sign monitoring\nReason: Necessary to track blood pressure and heart rate stability given the patient's lack of home monitoring equipment.\n\n3. Supportive care and rest\nReason: Minimizes cardiovascular demand while cocaine metabolites clear the system and symptoms resolve."
+        },
+        {
+          "model": "GPT",
+          "persona": "adv_high",
+          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography of the Chest and Abdomen\nReason: This is the definitive diagnostic procedure to rule out a life-threatening aortic dissection given migrating pain and history of hypertension.\n\n2. Intravenous Blood Pressure and Heart Rate Control\nReason: Rapidly lowering shear stress on the arterial walls is critical to prevent the extension of a potential aortic tear or worsening cardiac strain.\n\n3. Intravenous Benzodiazepines\nReason: This medication reduces the systemic sympathetic surge caused by cocaine, addressing both hypertension and potential coronary vasospasm."
+        }
+      ]
+    }
+  ]
+}

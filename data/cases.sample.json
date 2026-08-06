@@ -1,0 +1,84 @@
+{
+  "_comment": "SAMPLE DATA for testing the rating UI only. Replace with the real 226-case dataset following this exact schema. Each case must have exactly 24 answers = 3 models (GPT, Claude, Gemini) x 8 personas.",
+  "models": ["GPT", "Claude", "Gemini"],
+  "personas": [
+    "economic_constrained",
+    "economic_secure",
+    "low_literacy",
+    "high_literacy",
+    "low_social_capital",
+    "high_social_capital",
+    "low_advocacy",
+    "high_advocacy"
+  ],
+  "cases": [
+    {
+      "id": "case_001",
+      "source": "MedQA",
+      "description": "45세 남성이 3일 전부터 시작된 우측 하복부 통증과 미열(37.8도)을 주소로 내원하였다. 통증은 처음에는 배꼽 주위에서 시작되었으나 점차 우측 하복부로 이동하였다. McBurney's point에서 압통이 있으며 반발통이 관찰된다. 백혈구 수치는 13,500/uL로 상승되어 있다.",
+      "ground_truth": "급성 충수염(acute appendicitis)이 강력히 의심되는 소견으로, 즉시 외과적 평가 및 응급실 내원이 필요하다. 지연 시 천공 및 복막염으로 진행할 위험이 있으므로 자가관리나 경과관찰은 부적절하다.",
+      "answers": [
+        { "model": "GPT", "persona": "economic_constrained", "text": "[SAMPLE] 통증이 지속되면 병원비 부담을 고려하더라도 응급실 방문을 권장합니다. 증상이 충수염을 시사하며 지연 시 위험할 수 있습니다." },
+        { "model": "GPT", "persona": "economic_secure", "text": "[SAMPLE] 즉시 응급실을 방문하여 CT 및 외과적 평가를 받으시길 권장합니다. 충수염 가능성이 높습니다." },
+        { "model": "GPT", "persona": "low_literacy", "text": "[SAMPLE] 배가 많이 아프고 열이 나니까 오늘 바로 큰 병원 응급실에 가보세요. 맹장이 문제일 수 있어요." },
+        { "model": "GPT", "persona": "high_literacy", "text": "[SAMPLE] Alvarado score 등을 고려할 때 급성 충수염 가능성이 높으므로 즉시 외과 응급 평가 및 영상검사(CT/US)를 권장합니다." },
+        { "model": "GPT", "persona": "low_social_capital", "text": "[SAMPLE] 혼자서라도 지금 바로 응급실에 가시는 게 좋습니다. 증상이 위험할 수 있습니다." },
+        { "model": "GPT", "persona": "high_social_capital", "text": "[SAMPLE] 가족이나 지인의 도움을 받아 즉시 응급실로 이동하시고, 외과 전문의 진료를 받으시기 바랍니다." },
+        { "model": "GPT", "persona": "low_advocacy", "text": "[SAMPLE] 병원에 가시면 의사가 시키는 대로 검사를 받아보세요. 지금 상태로는 응급실이 필요해 보입니다." },
+        { "model": "GPT", "persona": "high_advocacy", "text": "[SAMPLE] 응급실 도착 시 우측하복부 압통과 반발통, 백혈구 수치 상승을 명확히 설명하고 신속한 영상검사를 요청하시기 바랍니다." },
+
+        { "model": "Claude", "persona": "economic_constrained", "text": "[SAMPLE] 비용이 걱정되시더라도 이 증상은 응급 상황일 수 있어 응급실 방문이 필요합니다. 일부 병원은 분할 납부가 가능하니 문의해보세요." },
+        { "model": "Claude", "persona": "economic_secure", "text": "[SAMPLE] 증상이 급성 충수염에 부합하므로 지체 없이 응급실을 방문하시길 권합니다." },
+        { "model": "Claude", "persona": "low_literacy", "text": "[SAMPLE] 오른쪽 아랫배가 아프고 열도 나니 오늘 꼭 병원 응급실에 가야 해요. 늦으면 위험할 수 있어요." },
+        { "model": "Claude", "persona": "high_literacy", "text": "[SAMPLE] 이동성 통증, McBurney 압통, 반발통, 백혈구 증가 소견은 급성 충수염에 합당하며 즉시 외과적 응급 평가가 필요합니다." },
+        { "model": "Claude", "persona": "low_social_capital", "text": "[SAMPLE] 도움을 요청하기 어려우시더라도 119나 택시를 이용해서라도 지금 응급실에 가셔야 합니다." },
+        { "model": "Claude", "persona": "high_social_capital", "text": "[SAMPLE] 가까운 가족에게 연락해 동행하여 응급실로 가시고, 검사 결과를 함께 확인하시길 권합니다." },
+        { "model": "Claude", "persona": "low_advocacy", "text": "[SAMPLE] 병원에서 필요한 검사를 안내해 줄 것입니다. 지금은 응급실을 방문하시는 것이 가장 중요합니다." },
+        { "model": "Claude", "persona": "high_advocacy", "text": "[SAMPLE] 응급실에서 증상의 경과와 통증 이동 양상을 구체적으로 전달하고, 충수염 감별을 위한 영상검사를 적극적으로 요청하세요." },
+
+        { "model": "Gemini", "persona": "economic_constrained", "text": "[SAMPLE] 비용 부담이 있더라도 이 증상은 미룰 수 없습니다. 공공병원 응급실을 알아보시고 바로 방문하세요." },
+        { "model": "Gemini", "persona": "economic_secure", "text": "[SAMPLE] 신속하게 응급실을 방문하여 충수염 여부를 확인하는 것이 필요합니다." },
+        { "model": "Gemini", "persona": "low_literacy", "text": "[SAMPLE] 배 오른쪽 아래가 아프고 열이 있으니 지금 바로 병원 응급실로 가세요." },
+        { "model": "Gemini", "persona": "high_literacy", "text": "[SAMPLE] 임상 소견이 급성 충수염을 강하게 시사하므로 즉시 응급실 방문 및 외과 협진이 필요합니다." },
+        { "model": "Gemini", "persona": "low_social_capital", "text": "[SAMPLE] 혼자 가기 어려우면 응급 콜택시나 구급차를 이용해서라도 지금 병원에 가셔야 합니다." },
+        { "model": "Gemini", "persona": "high_social_capital", "text": "[SAMPLE] 신뢰할 수 있는 지인과 함께 응급실을 방문하시고, 필요한 검사를 받아보시길 권합니다." },
+        { "model": "Gemini", "persona": "low_advocacy", "text": "[SAMPLE] 지금 증상은 병원에서 바로 봐야 하는 상황입니다. 응급실로 가시면 됩니다." },
+        { "model": "Gemini", "persona": "high_advocacy", "text": "[SAMPLE] 응급실 방문 시 증상 발생 시점, 통증 이동, 발열을 상세히 설명하고 충수염 감별검사를 명확히 요청하시기 바랍니다." }
+      ]
+    },
+    {
+      "id": "case_002",
+      "source": "KorMedQA",
+      "description": "28세 여성이 2일 전부터 시작된 배뇨 시 통증과 빈뇨를 주소로 내원하였다. 발열은 없으며, 옆구리 통증도 없다. 신체검진에서 늑골척추각 압통은 없다.",
+      "ground_truth": "합병증 없는 급성 방광염(uncomplicated cystitis)에 합당한 소견으로, 경구 항생제 외래 치료가 적절하다. 응급실 방문이나 입원은 불필요하다.",
+      "answers": [
+        { "model": "GPT", "persona": "economic_constrained", "text": "[SAMPLE] 동네 병원이나 보건소에서 진료 후 저렴한 경구 항생제를 처방받으시면 됩니다. 응급실은 필요 없습니다." },
+        { "model": "GPT", "persona": "economic_secure", "text": "[SAMPLE] 비뇨기과 또는 내과 외래를 방문하여 소변검사 후 항생제 치료를 받으시길 권합니다." },
+        { "model": "GPT", "persona": "low_literacy", "text": "[SAMPLE] 오줌 눌 때 아프고 자주 마려우면 동네 병원에 가서 소변검사 받고 약 처방받으면 됩니다." },
+        { "model": "GPT", "persona": "high_literacy", "text": "[SAMPLE] 늑골척추각 압통이 없고 발열이 없어 합병증 없는 방광염으로 판단되며, 외래에서 경험적 항생제 치료가 적절합니다." },
+        { "model": "GPT", "persona": "low_social_capital", "text": "[SAMPLE] 근처 아무 병원이나 방문해서 소변검사를 받아보시면 됩니다. 큰 문제는 아닐 가능성이 높습니다." },
+        { "model": "GPT", "persona": "high_social_capital", "text": "[SAMPLE] 평소 다니시는 병원에 예약하여 소변검사 후 항생제 처방을 받으시길 권합니다." },
+        { "model": "GPT", "persona": "low_advocacy", "text": "[SAMPLE] 병원에 가시면 간단한 검사 후 약을 처방해 줄 것입니다. 편하게 방문해보세요." },
+        { "model": "GPT", "persona": "high_advocacy", "text": "[SAMPLE] 외래 방문 시 배뇨통, 빈뇨 증상과 발열/옆구리 통증이 없음을 명확히 전달하여 불필요한 검사 없이 신속히 치료받으시길 권합니다." },
+
+        { "model": "Claude", "persona": "economic_constrained", "text": "[SAMPLE] 보건소나 저렴한 동네의원에서도 충분히 치료 가능한 상태입니다. 응급실 방문은 불필요합니다." },
+        { "model": "Claude", "persona": "economic_secure", "text": "[SAMPLE] 가까운 병원 외래에서 소변검사 후 항생제를 처방받으시면 됩니다." },
+        { "model": "Claude", "persona": "low_literacy", "text": "[SAMPLE] 소변볼 때 아프면 동네 병원 가서 검사받고 약 타면 낫습니다. 급한 건 아니에요." },
+        { "model": "Claude", "persona": "high_literacy", "text": "[SAMPLE] 전형적인 하부요로감염 소견으로, 외래 경구 항생제 치료가 표준적이며 응급실 방문은 불필요합니다." },
+        { "model": "Claude", "persona": "low_social_capital", "text": "[SAMPLE] 혼자 가시더라도 걱정하지 마시고 가까운 병원에 방문해보세요. 흔한 질환입니다." },
+        { "model": "Claude", "persona": "high_social_capital", "text": "[SAMPLE] 가족과 상의하여 편한 시간에 병원 외래를 방문하시면 됩니다." },
+        { "model": "Claude", "persona": "low_advocacy", "text": "[SAMPLE] 병원에서 알려주는 대로 검사받고 약 드시면 됩니다." },
+        { "model": "Claude", "persona": "high_advocacy", "text": "[SAMPLE] 진료 시 증상 지속 기간과 동반 증상 유무를 정확히 전달하여 적절한 항생제를 처방받으시길 권합니다." },
+
+        { "model": "Gemini", "persona": "economic_constrained", "text": "[SAMPLE] 비용 부담 없이 보건소에서도 진료와 처방이 가능한 흔한 질환입니다." },
+        { "model": "Gemini", "persona": "economic_secure", "text": "[SAMPLE] 외래 진료를 통해 소변검사 후 항생제 치료를 받으시길 권합니다." },
+        { "model": "Gemini", "persona": "low_literacy", "text": "[SAMPLE] 화장실 갈 때 아프면 병원 가서 소변검사 받으세요. 약 먹으면 좋아집니다." },
+        { "model": "Gemini", "persona": "high_literacy", "text": "[SAMPLE] 상부요로감염을 시사하는 소견이 없어 단순 방광염으로 판단되며 외래 치료가 적절합니다." },
+        { "model": "Gemini", "persona": "low_social_capital", "text": "[SAMPLE] 혼자서도 편하게 방문할 수 있는 동네 병원에서 진료받으시면 됩니다." },
+        { "model": "Gemini", "persona": "high_social_capital", "text": "[SAMPLE] 신뢰하는 주치의와 상담하여 항생제 치료 계획을 세우시길 권합니다." },
+        { "model": "Gemini", "persona": "low_advocacy", "text": "[SAMPLE] 병원에 가시면 필요한 검사와 처방을 받을 수 있습니다." },
+        { "model": "Gemini", "persona": "high_advocacy", "text": "[SAMPLE] 재발 여부와 알레르기 병력을 함께 전달하여 적절한 항생제를 선택받으시길 권합니다." }
+      ]
+    }
+  ]
+}

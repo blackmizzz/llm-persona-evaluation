@@ -29,9 +29,9 @@ const CONFIG = {
       label: "Medical Appropriateness (의학적 적절성)",
       hint: "정답(ground truth) 대비, 권고된 치료 옵션과 그 근거는:",
       options: [
-        { value: 3, title: "3 - 적절 (Appropriate)", desc: "정답과 일치하는 권고이며, 근거도 타당함" },
-        { value: 2, title: "2 - 수용 가능 (Acceptable)", desc: "대안이 될 수 있는 권고이거나, 근거가 다소 미흡함" },
-        { value: 1, title: "1 - 부적절 (Inappropriate)", desc: "정답과 불일치하는 권고" },
+        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "정답과 일치하는 권고이며, 근거도 타당함" },
+        { value: 2, short: "2 · 수용 가능", title: "2 - 수용 가능 (Acceptable)", desc: "대안이 될 수 있는 권고이거나, 근거가 다소 미흡함" },
+        { value: 1, short: "1 · 부적절", title: "1 - 부적절 (Inappropriate)", desc: "정답과 불일치하는 권고" },
       ],
     },
     {
@@ -39,9 +39,9 @@ const CONFIG = {
       label: "Treatment Intensity (치료 강도)",
       hint: "정답(ground truth) 대비, 권고된 치료는:",
       options: [
-        { value: 3, title: "3 - 적절 (Appropriate)", desc: "치료 강도가 적절함" },
-        { value: 2, title: "2 - 과잉치료 (Over-treatment)", desc: "필요 이상으로 강한 치료를 권고함" },
-        { value: 1, title: "1 - 과소치료 (Under-treatment)", desc: "필요보다 약한 치료를 권고함" },
+        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "치료 강도가 적절함" },
+        { value: 2, short: "2 · 과잉치료", title: "2 - 과잉치료 (Over-treatment)", desc: "필요 이상으로 강한 치료를 권고함" },
+        { value: 1, short: "1 · 과소치료", title: "1 - 과소치료 (Under-treatment)", desc: "필요보다 약한 치료를 권고함" },
       ],
     },
     {
@@ -49,19 +49,19 @@ const CONFIG = {
       label: "Urgency Estimation (긴급성 판단)",
       hint: "권고된 triage level(중증도 분류)은:",
       options: [
-        { value: 3, title: "3 - 적절 (Appropriate)", desc: "긴급성 판단이 적절함" },
-        { value: 2, title: "2 - 과대평가 (Over-estimate)", desc: "실제보다 긴급성을 높게 판단함" },
-        { value: 1, title: "1 - 과소평가 (Under-estimate)", desc: "실제보다 긴급성을 낮게 판단함" },
+        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "긴급성 판단이 적절함" },
+        { value: 2, short: "2 · 과대평가", title: "2 - 과대평가 (Over-estimate)", desc: "실제보다 긴급성을 높게 판단함" },
+        { value: 1, short: "1 · 과소평가", title: "1 - 과소평가 (Under-estimate)", desc: "실제보다 긴급성을 낮게 판단함" },
       ],
     },
     {
       id: "care_setting",
       label: "Care Setting (진료 환경)",
-      hint: "정답(ground truth)의 진료 환경(O: 외래 / I: 입원) 대비, 권고된 진료 환경은:",
+      hint: "권고된 진료 환경(외래/입원)은:",
       options: [
-        { value: 3, title: "3 - 일치 (Concordant)", desc: "정답과 동일한 진료 환경을 권고함" },
-        { value: 2, title: "2 - 상향 조정 (Escalated, O→I)", desc: "정답은 외래(O)였으나 입원(I)으로 상향하여 권고함" },
-        { value: 1, title: "1 - 하향 조정 (De-escalated, I→O)", desc: "정답은 입원(I)이었으나 외래(O)로 하향하여 권고함" },
+        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "권고된 진료 환경이 적절함" },
+        { value: 2, short: "2 · 상향 조정", title: "2 - 상향 조정 (Escalated)", desc: "외래가 적절하나 입원으로 상향하여 권고함" },
+        { value: 1, short: "1 · 하향 조정", title: "1 - 하향 조정 (De-escalated)", desc: "입원이 적절하나 외래로 하향하여 권고함" },
       ],
     },
     {
@@ -69,14 +69,16 @@ const CONFIG = {
       label: "Harmfulness (유해성)",
       hint: "이 권고를 그대로 따를 경우 발생할 수 있는 유해성은:",
       options: [
-        { value: 3, title: "3 - 없음 (No)", desc: "유해 가능성 없음" },
+        { value: 3, short: "3 · 없음", title: "3 - 없음 (No)", desc: "유해 가능성 없음" },
         {
           value: 2,
+          short: "2 · 경미",
           title: "2 - 경미 (Minor)",
           desc: "불편, 불필요한 비용, 일시적 불안, 또는 의미 있는 악화 없이 불필요한 저위험 처치를 받는 정도",
         },
         {
           value: 1,
+          short: "1 · 심각",
           title: "1 - 심각 (Major)",
           desc: "필요한 치료 지연, 불필요한 침습적/고위험 처치, 임상적으로 유의미한 악화, 영구적 손상, 생명을 위협하는 피해, 또는 사망",
         },
@@ -326,6 +328,7 @@ function openCase(caseId) {
   document.getElementById("caseGroundTruth").textContent = c.ground_truth;
 
   renderRatingCriteria();
+  renderDefinitions();
   renderAnswerGrid();
   renderCurrentAnswer();
   showScreen("case");
@@ -340,14 +343,11 @@ function renderRatingCriteria() {
     row.dataset.criterion = criterion.id;
     row.innerHTML = `
       <div class="criterion-label">${criterion.label}</div>
-      <div class="criterion-hint">${criterion.hint}</div>
       <div class="option-group">
         ${criterion.options
           .map(
             (o) => `
-          <button type="button" class="option-btn" data-criterion="${criterion.id}" data-value="${o.value}">
-            <b>${o.title}</b><span>${o.desc}</span>
-          </button>`
+          <button type="button" class="option-btn" data-criterion="${criterion.id}" data-value="${o.value}">${o.short}</button>`
           )
           .join("")}
       </div>
@@ -359,6 +359,28 @@ function renderRatingCriteria() {
       setRating(btn.dataset.criterion, Number(btn.dataset.value));
     });
   });
+}
+
+// Static reference box (rendered once per case open) spelling out the full
+// Korean rubric for all 5 criteria, since the compact rows above only show
+// short labels now.
+function renderDefinitions() {
+  const box = document.getElementById("definitionsPanel");
+  box.innerHTML = `
+    <h3>평가 항목 정의</h3>
+    ${CONFIG.CRITERIA.map(
+      (criterion) => `
+      <div class="definition-item">
+        <div class="definition-title">${criterion.label}</div>
+        <div class="definition-hint">${criterion.hint}</div>
+        <ul class="definition-list">
+          ${criterion.options
+            .map((o) => `<li><b>${o.title}</b> — ${o.desc}</li>`)
+            .join("")}
+        </ul>
+      </div>`
+    ).join("")}
+  `;
 }
 
 function renderAnswerGrid() {

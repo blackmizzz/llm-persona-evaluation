@@ -491,7 +491,8 @@ function updateNextSaveButtons() {
   nextBtn.classList.toggle("hidden", isLast);
 
   const allDone = isCaseFullyRated(cp);
-  saveBtn.classList.toggle("hidden", !allDone && !isLast);
+  // Save only ever shows on the last (24th) answer -- everywhere else it's Prev/Next only.
+  saveBtn.classList.toggle("hidden", !isLast);
   const submitted = isSubmittedStatus(cp.status);
   saveBtn.disabled = !allDone;
   saveBtn.textContent = submitted ? "제출됨 (재제출하려면 클릭)" : "전체 저장 (Save) 후 다음 시나리오로 이동";

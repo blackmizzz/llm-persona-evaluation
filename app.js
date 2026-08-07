@@ -314,6 +314,10 @@ function escapeHtml(str) {
   div.textContent = str;
   return div.innerHTML;
 }
+function stripParenthetical(str) {
+  // "Medical Appropriateness (의학적 적절성)" -> "Medical Appropriateness"
+  return str.replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
 
 /* ---------------------------------------------------------------------
    Case / rating screen
@@ -342,7 +346,7 @@ function renderRatingCriteria() {
     row.className = "criterion-row";
     row.dataset.criterion = criterion.id;
     row.innerHTML = `
-      <div class="criterion-label">${criterion.label}</div>
+      <div class="criterion-label">${stripParenthetical(criterion.label)}</div>
       <div class="option-group">
         ${criterion.options
           .map(
@@ -571,10 +575,9 @@ async function submitCase(caseId) {
     cp.status = "submitted_local_only";
     cp.submittedAt = new Date().toISOString();
     saveProgress();
-    msg.textContent =
-      "⚠ SHEETS_WEBHOOK_URL이 설정되지 않아 로컬에만 저장되었습니다 (app.js 상단 CONFIG 확인, README.md 참고).";
-    renderDashboard();
-    updateNextSaveButtons();
+    goToNextCaseOrDashboard(
+      "⚠ SHEETS_WEBHOOK_URL이 설정되지 않아 로컬에만 저장되었습니다 (app.js 상단 CONFIG 확인, README.md 참고)."
+    );
     return;
   }
 
@@ -589,14 +592,37 @@ async function submitCase(caseId) {
     cp.status = "submitted";
     cp.submittedAt = new Date().toISOString();
     saveProgress();
-    msg.textContent = "저장되었습니다. 목록으로 돌아가 다음 시나리오를 진행하세요.";
+    goToNextCaseOrDashboard("저장되었습니다.");
   } catch (e) {
     console.error(e);
     msg.textContent = "저장 실패: 네트워크를 확인 후 다시 시도해주세요. (평가 내용은 브라우저에 안전하게 보관되어 있습니다)";
-  } finally {
     updateNextSaveButtons();
     renderDashboard();
   }
+}
+
+// After a successful save, jump straight into the evaluator's next
+// not-yet-submitted assigned case (skips the extra "back to list, click
+// next" step). Falls back to the dashboard once everything is done.
+function goToNextCaseOrDashboard(toastMessage) {
+  const assignment = App.assignments[App.evaluatorId];
+  const ids = assignment.case_ids;
+  const idx = ids.indexOf(App.currentCaseId);
+
+  for (let step = 1; step <= ids.length; step++) {
+    const candidate = ids[(idx + step) % ids.length];
+    if (!isSubmittedStatus(caseStatus(candidate))) {
+      openCase(candidate);
+      if (toastMessage) {
+        document.getElementById("caseActionMsg").textContent = toastMessage + " 다음 시나리오로 이동했습니다.";
+      }
+      return;
+    }
+  }
+
+  // Nothing left to rate -- back to the dashboard.
+  renderDashboard();
+  showScreen("dashboard");
 }
 
 /* ---------------------------------------------------------------------

@@ -160,8 +160,11 @@ body {
 .answer-nav { margin-bottom: 14px; }
 .answer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(34px, 1fr));
-  gap: 6px;
+  /* auto-fit (not auto-fill) collapses empty tracks so the actual cells
+     stretch to fill the row's full width -- matches the scenario box above
+     instead of clumping on the left with fewer items (e.g. 18 vs 24). */
+  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+  gap: 8px;
 }
 .answer-cell {
   aspect-ratio: 1;

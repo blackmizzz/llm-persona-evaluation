@@ -1,12 +1,12 @@
 # LLM Persona Treatment-Recommendation 평가 웹앱
 
-여러 평가자(reader)가 각자 배정된 시나리오에 대해, 3개 모델(GPT/Claude/Gemini) × 8개 persona = 24개 답변을
+여러 평가자(reader)가 각자 배정된 시나리오에 대해, 3개 모델(GPT/Claude/Gemini) × 6개 persona = 18개 답변을
 5개 항목(1–3점)으로 평가하고, 결과가 Google Sheet 한 곳에 모이도록 만든 정적 웹앱입니다.
 
 - 서버 불필요 (정적 파일 호스팅만 하면 됨)
 - 결과 저장은 Google Apps Script Web App을 통해 Google Sheet에 append
 - 평가자별 진행 상황은 브라우저 `localStorage`에 저장되어, 여러 세션에 걸쳐 이어서 할 수 있음
-- 24개 답변의 노출 순서는 (평가자, 케이스)별로 랜덤이지만 고정 시드로 재현되어, 새로고침해도 순서가 안 바뀜
+- 18개 답변의 노출 순서는 (평가자, 케이스)별로 랜덤이지만 고정 시드로 재현되어, 새로고침해도 순서가 안 바뀜
 - 기본값은 **블라인드 평가**: 평가 화면에서는 어느 모델/persona의 답변인지 보이지 않음 (저장되는 데이터에는 당연히 포함됨)
 
 ## 1. 폴더 구조
@@ -33,7 +33,7 @@ python -m http.server 8080
 ```
 
 브라우저에서 `http://localhost:8080` 접속 → 평가자 선택(`김OO`/`이OO`/`박OO` 중 하나) → 시작하기 →
-시나리오 목록에서 `case_001` 열어서 24개 답변을 다 채워보고 Save까지 눌러보세요.
+시나리오 목록에서 `case_001` 열어서 18개 답변을 다 채워보고 Save까지 눌러보세요.
 (아직 `SHEETS_WEBHOOK_URL`을 설정하지 않았다면 "로컬에만 저장되었습니다" 메시지가 뜨는 게 정상입니다 —
 브라우저를 닫아도 진행 상황은 `localStorage`에 남아 있습니다.)
 
@@ -48,10 +48,10 @@ python scripts/convert_cases.py "path/to/전체_케이스.xlsx" data/cases.json
 ```
 
 - 입력 xlsx는 `Case example.xlsx`와 동일한 컬럼 구조(`case_no, case_scenario, case_answer, model, persona, recommendation`)여야 합니다.
-- `case_no`/`case_scenario`/`case_answer`는 각 케이스의 첫 행에만 채워져 있고 나머지 23행은 비어 있어도 됩니다(엑셀 병합 셀 형태) — 스크립트가 자동으로 forward-fill 합니다.
+- `case_no`/`case_scenario`/`case_answer`는 각 케이스의 첫 행에만 채워져 있고 나머지 17행은 비어 있어도 됩니다(엑셀 병합 셀 형태) — 스크립트가 자동으로 forward-fill 합니다.
 - `model`은 `gpt/claude/gemini`(대소문자 무관) → `GPT/Claude/Gemini`로 자동 변환됩니다.
-- `persona`는 고정 8개 라벨(`constrain, secure, lit_low, lit_high, soc_low, soc_high, adv_low, adv_high`)이어야 하며, 케이스당 정확히 24행(3 모델 × 8 persona)이 아니거나 라벨 오탈자가 있으면 실행 후 **WARNING**으로 출력됩니다 — 반드시 warning 없는 상태로 만들고 배포하세요.
-- 실행 후 `python scripts/convert_cases.py ...` 출력의 `WARNINGS` 섹션을 꼭 확인하세요 (빈 텍스트, 24개가 아닌 답변 수, 중복 model/persona 조합 등을 잡아줍니다).
+- `persona`는 고정 6개 라벨(`constrain, secure, lit_low, lit_high, soc_low, soc_high`)이어야 하며, 케이스당 정확히 18행(3 모델 × 6 persona)이 아니거나 라벨 오탈자가 있으면 실행 후 **WARNING**으로 출력됩니다 — 반드시 warning 없는 상태로 만들고 배포하세요.
+- 실행 후 `python scripts/convert_cases.py ...` 출력의 `WARNINGS` 섹션을 꼭 확인하세요 (빈 텍스트, 18개가 아닌 답변 수, 중복 model/persona 조합 등을 잡아줍니다).
 
 수동으로 JSON을 작성해야 한다면 아래 스키마를 따르면 됩니다 (`data/cases.sample.json` 참고):
 
@@ -59,16 +59,16 @@ python scripts/convert_cases.py "path/to/전체_케이스.xlsx" data/cases.json
 {
   "models": ["GPT", "Claude", "Gemini"],
   "personas": ["constrain", "secure", "lit_low", "lit_high",
-               "soc_low", "soc_high", "adv_low", "adv_high"],
+               "soc_low", "soc_high"],
   "cases": [
     {
       "id": "case_001",           // 고유 ID (필수, 유일해야 함)
       "source": "MedQA",          // 참고용, 자유
       "description": "...",       // 시나리오 (상단 고정 표시)
       "ground_truth": "...",      // 정답 (상단 고정 표시)
-      "answers": [                // 정확히 24개 (model×persona 전 조합)
+      "answers": [                // 정확히 18개 (model×persona 전 조합)
         { "model": "GPT", "persona": "constrain", "text": "..." },
-        // ... 총 24개
+        // ... 총 18개
       ]
     }
     // ... 총 226개 case
@@ -77,7 +77,7 @@ python scripts/convert_cases.py "path/to/전체_케이스.xlsx" data/cases.json
 ```
 
 주의:
-- `answers` 배열은 반드시 24개(3 models × 8 personas 전 조합)여야 합니다. 개수가 다르면 콘솔에 경고가 뜹니다.
+- `answers` 배열은 반드시 18개(3 models × 6 personas 전 조합)여야 합니다. 개수가 다르면 콘솔에 경고가 뜹니다.
 - `id`는 Sheet에 그대로 저장되니 사람이 알아보기 쉬운 값(`case_001` 등)을 권장합니다.
 
 ## 4. 평가자 배정 준비 (`data/assignments.json`)
@@ -112,7 +112,7 @@ python scripts/convert_cases.py "path/to/전체_케이스.xlsx" data/cases.json
 6. 배포 후 나오는 **웹 앱 URL**을 복사해서 `app.js`의 `CONFIG.SHEETS_WEBHOOK_URL`에 붙여넣기.
 7. `Code.gs`를 수정할 때마다 "배포 관리 > 편집 > 새 버전"으로 재배포해야 반영됩니다.
 
-시트에는 `Ratings`라는 탭이 자동 생성되고, 한 번 제출할 때마다 24개 행(모델×persona 조합별 1행)이 추가됩니다.
+시트에는 `Ratings`라는 탭이 자동 생성되고, 한 번 제출할 때마다 18개 행(모델×persona 조합별 1행)이 추가됩니다.
 컬럼: `server_timestamp, evaluator_id, evaluator_name, case_id, model, persona, display_order_index, medical_appropriateness, treatment_intensity, urgency_estimation, care_setting, harmfulness, submitted_at`
 
 → 이후 Google Sheets에서 피벗 테이블로 `model` × `persona`별 평균/분포를 바로 집계할 수 있습니다.
@@ -133,13 +133,13 @@ GitHub Pages, Netlify, Vercel, 사내 웹서버 등 아무 정적 호스팅에 �
 1. 로그인 화면에서 본인 ID 선택 → 시작하기
 2. 대시보드에서 배정된 케이스 중 하나 선택 (미시작/진행중/제출완료 표시됨)
 3. 상단 고정된 시나리오+정답을 보며, 아래 답변 1개씩 5개 항목 평가
-4. 24개 답변 진행 상황은 상단 그리드에서 바로 확인/이동 가능 (완료된 답변은 초록색)
+4. 18개 답변 진행 상황은 상단 그리드에서 바로 확인/이동 가능 (완료된 답변은 초록색)
 5. 다음(Next)으로 넘어가며 계속 평가, 중간에 브라우저를 닫아도 다음 접속 시 이어서 가능
-6. 24개를 모두 채우면 Save(전체 저장) 버튼이 활성화 → 클릭 시 Google Sheet로 전송
+6. 18개를 모두 채우면 Save(전체 저장) 버튼이 활성화 → 클릭 시 Google Sheet로 전송
 7. 대시보드로 돌아가 다음 배정 케이스 진행
 
 ## 9. 다음 단계 (별도 작업)
 
-이 웹앱은 **평가 도구**만 다룹니다. MedQA/KorMedQA 기반 226개 시나리오 생성과, GPT/Claude/Gemini API를 8개
-persona 프롬프트로 호출해 24개 답변을 만드는 **데이터 생성 파이프라인**은 별도 작업입니다. 진행하시려면
+이 웹앱은 **평가 도구**만 다룹니다. MedQA/KorMedQA 기반 226개 시나리오 생성과, GPT/Claude/Gemini API를 6개
+persona 프롬프트로 호출해 18개 답변을 만드는 **데이터 생성 파이프라인**은 별도 작업입니다. 진행하시려면
 OpenAI/Google/Anthropic API 키와 MedQA/KorMedQA 데이터셋 접근 방법을 알려주세요.

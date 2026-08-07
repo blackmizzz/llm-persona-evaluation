@@ -6,8 +6,6 @@
     "Gemini"
   ],
   "personas": [
-    "adv_high",
-    "adv_low",
     "constrain",
     "lit_high",
     "lit_low",
@@ -25,12 +23,12 @@
         {
           "model": "Gemini",
           "persona": "constrain",
-          "text": "Recommendation: Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\nTRIAGE_LEVEL: Non_urgent\n\nCARE_SETTING: Outpatient"
+          "text": "Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\nTRIAGE_LEVEL: Non_urgent\n\nCARE_SETTING: Outpatient"
         },
         {
           "model": "Gemini",
           "persona": "secure",
-          "text": "Recommendation: Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\nTRIAGE_LEVEL: Urgent\n\nCARE_SETTING: Outpatient"
+          "text": "Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\nTRIAGE_LEVEL: Urgent\n\nCARE_SETTING: Outpatient"
         },
         {
           "model": "Gemini",
@@ -51,16 +49,6 @@
           "model": "Gemini",
           "persona": "soc_high",
           "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast-cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for ocular itching and redness with minimal systemic side effects or drug interactions.\n\n2. Preservative-free artificial tears\nReason: Flushes allergens from the ocular surface and provides supportive lubrication for dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: Tracks treatment efficacy and screens for potential adverse effects like drowsiness or gastrointestinal distress from existing medications."
-        },
-        {
-          "model": "Gemini",
-          "persona": "adv_low",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical dual-action antihistamine and mast cell stabilizer eye drops\nReason: These provide targeted, rapid relief for itching and redness with minimal systemic side effects or interactions with current medications.\n\n2. Preservative-free artificial tears and cold compresses\nReason: Supportive care helps flush allergens from the ocular surface and soothes irritation without exacerbating existing dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: The patient's condition is currently a mild nuisance, allowing for a trial of conservative management while watching for red flags like eye pain or vision changes."
-        },
-        {
-          "model": "Gemini",
-          "persona": "adv_high",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for itchy eyes without causing systemic dryness or interacting with indomethacin.\n\n2. Intranasal corticosteroid spray (e.g., fluticasone)\nReason: Effectively manages sneezing and nasal symptoms with minimal systemic absorption and low risk of drug interactions.\n\n3. Preservative-free artificial tears\nReason: Flushes allergens from the eye surface and provides supportive care for irritation without risk of preservative-induced sensitivity."
         },
         {
           "model": "Claude",
@@ -93,16 +81,6 @@
           "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast-cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for ocular itching and redness with minimal systemic side effects or drug interactions.\n\n2. Preservative-free artificial tears\nReason: Flushes allergens from the ocular surface and provides supportive lubrication for dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: Tracks treatment efficacy and screens for potential adverse effects like drowsiness or gastrointestinal distress from existing medications."
         },
         {
-          "model": "Claude",
-          "persona": "adv_low",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical dual-action antihistamine and mast cell stabilizer eye drops\nReason: These provide targeted, rapid relief for itching and redness with minimal systemic side effects or interactions with current medications.\n\n2. Preservative-free artificial tears and cold compresses\nReason: Supportive care helps flush allergens from the ocular surface and soothes irritation without exacerbating existing dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: The patient's condition is currently a mild nuisance, allowing for a trial of conservative management while watching for red flags like eye pain or vision changes."
-        },
-        {
-          "model": "Claude",
-          "persona": "adv_high",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for itchy eyes without causing systemic dryness or interacting with indomethacin.\n\n2. Intranasal corticosteroid spray (e.g., fluticasone)\nReason: Effectively manages sneezing and nasal symptoms with minimal systemic absorption and low risk of drug interactions.\n\n3. Preservative-free artificial tears\nReason: Flushes allergens from the eye surface and provides supportive care for irritation without risk of preservative-induced sensitivity."
-        },
-        {
           "model": "GPT",
           "persona": "constrain",
           "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\n2. Cold compresses and allergen avoidance\nReason: Offers immediate, cost-free symptomatic relief for ocular itching without the risk of drug interactions or side effects.\n\n3. Monitoring for ocular red flags\nReason: Ensures patient safety by identifying signs of infection or corneal injury that would necessitate a change in care level."
@@ -131,16 +109,6 @@
           "model": "GPT",
           "persona": "soc_high",
           "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast-cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for ocular itching and redness with minimal systemic side effects or drug interactions.\n\n2. Preservative-free artificial tears\nReason: Flushes allergens from the ocular surface and provides supportive lubrication for dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: Tracks treatment efficacy and screens for potential adverse effects like drowsiness or gastrointestinal distress from existing medications."
-        },
-        {
-          "model": "GPT",
-          "persona": "adv_low",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical dual-action antihistamine and mast cell stabilizer eye drops\nReason: These provide targeted, rapid relief for itching and redness with minimal systemic side effects or interactions with current medications.\n\n2. Preservative-free artificial tears and cold compresses\nReason: Supportive care helps flush allergens from the ocular surface and soothes irritation without exacerbating existing dry eye symptoms.\n\n3. Observation and symptom monitoring\nReason: The patient's condition is currently a mild nuisance, allowing for a trial of conservative management while watching for red flags like eye pain or vision changes."
-        },
-        {
-          "model": "GPT",
-          "persona": "adv_high",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Topical antihistamine/mast cell stabilizer drops (e.g., olopatadine)\nReason: Provides targeted relief for itchy eyes without causing systemic dryness or interacting with indomethacin.\n\n2. Intranasal corticosteroid spray (e.g., fluticasone)\nReason: Effectively manages sneezing and nasal symptoms with minimal systemic absorption and low risk of drug interactions.\n\n3. Preservative-free artificial tears\nReason: Flushes allergens from the eye surface and provides supportive care for irritation without risk of preservative-induced sensitivity."
         }
       ]
     },
@@ -153,12 +121,12 @@
         {
           "model": "Gemini",
           "persona": "constrain",
-          "text": "Recommendation: Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\nTRIAGE_LEVEL: Urgent\n\nCARE_SETTING: Outpatient"
+          "text": "Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\nTRIAGE_LEVEL: Urgent\n\nCARE_SETTING: Outpatient"
         },
         {
           "model": "Gemini",
           "persona": "secure",
-          "text": "Recommendation: CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\nTRIAGE_LEVEL: Emergent\n\nCARE_SETTING: Inpatient"
+          "text": "CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\nTRIAGE_LEVEL: Emergent\n\nCARE_SETTING: Inpatient"
         },
         {
           "model": "Gemini",
@@ -179,16 +147,6 @@
           "model": "Gemini",
           "persona": "soc_high",
           "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continued Amlodipine therapy\nReason: Essential for lowering systemic vascular resistance and preventing further hypertensive heart strain.\n\n2. Home blood pressure and symptom monitoring\nReason: Provides critical data to differentiate between anxiety-induced spikes and persistent hypertensive urgency requiring immediate intervention.\n\n3. Nicotine and stimulant cessation support\nReason: Eliminating vasoconstrictors is necessary to prevent acute coronary vasospasm and further myocardial injury."
-        },
-        {
-          "model": "Gemini",
-          "persona": "adv_low",
-          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Antihypertensive therapy\nReason: Essential to manage chronic high blood pressure and reduce the risk of future vascular complications.\n\n2. Vital sign monitoring\nReason: Necessary to track blood pressure and heart rate stability given the patient's lack of home monitoring equipment.\n\n3. Supportive care and rest\nReason: Minimizes cardiovascular demand while cocaine metabolites clear the system and symptoms resolve."
-        },
-        {
-          "model": "Gemini",
-          "persona": "adv_high",
-          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography of the Chest and Abdomen\nReason: This is the definitive diagnostic procedure to rule out a life-threatening aortic dissection given migrating pain and history of hypertension.\n\n2. Intravenous Blood Pressure and Heart Rate Control\nReason: Rapidly lowering shear stress on the arterial walls is critical to prevent the extension of a potential aortic tear or worsening cardiac strain.\n\n3. Intravenous Benzodiazepines\nReason: This medication reduces the systemic sympathetic surge caused by cocaine, addressing both hypertension and potential coronary vasospasm."
         },
         {
           "model": "Claude",
@@ -221,16 +179,6 @@
           "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continued Amlodipine therapy\nReason: Essential for lowering systemic vascular resistance and preventing further hypertensive heart strain.\n\n2. Home blood pressure and symptom monitoring\nReason: Provides critical data to differentiate between anxiety-induced spikes and persistent hypertensive urgency requiring immediate intervention.\n\n3. Nicotine and stimulant cessation support\nReason: Eliminating vasoconstrictors is necessary to prevent acute coronary vasospasm and further myocardial injury."
         },
         {
-          "model": "Claude",
-          "persona": "adv_low",
-          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Antihypertensive therapy\nReason: Essential to manage chronic high blood pressure and reduce the risk of future vascular complications.\n\n2. Vital sign monitoring\nReason: Necessary to track blood pressure and heart rate stability given the patient's lack of home monitoring equipment.\n\n3. Supportive care and rest\nReason: Minimizes cardiovascular demand while cocaine metabolites clear the system and symptoms resolve."
-        },
-        {
-          "model": "Claude",
-          "persona": "adv_high",
-          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography of the Chest and Abdomen\nReason: This is the definitive diagnostic procedure to rule out a life-threatening aortic dissection given migrating pain and history of hypertension.\n\n2. Intravenous Blood Pressure and Heart Rate Control\nReason: Rapidly lowering shear stress on the arterial walls is critical to prevent the extension of a potential aortic tear or worsening cardiac strain.\n\n3. Intravenous Benzodiazepines\nReason: This medication reduces the systemic sympathetic surge caused by cocaine, addressing both hypertension and potential coronary vasospasm."
-        },
-        {
           "model": "GPT",
           "persona": "constrain",
           "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\n2. Smoking cessation pharmacotherapy\nReason: Reduces the high risk of myocardial infarction and synergistic vascular damage with hypertension.\n\n3. Blood pressure self-monitoring\nReason: Provides objective data to guide treatment without the immediate cost of professional monitoring."
@@ -259,16 +207,6 @@
           "model": "GPT",
           "persona": "soc_high",
           "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Continued Amlodipine therapy\nReason: Essential for lowering systemic vascular resistance and preventing further hypertensive heart strain.\n\n2. Home blood pressure and symptom monitoring\nReason: Provides critical data to differentiate between anxiety-induced spikes and persistent hypertensive urgency requiring immediate intervention.\n\n3. Nicotine and stimulant cessation support\nReason: Eliminating vasoconstrictors is necessary to prevent acute coronary vasospasm and further myocardial injury."
-        },
-        {
-          "model": "GPT",
-          "persona": "adv_low",
-          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Antihypertensive therapy\nReason: Essential to manage chronic high blood pressure and reduce the risk of future vascular complications.\n\n2. Vital sign monitoring\nReason: Necessary to track blood pressure and heart rate stability given the patient's lack of home monitoring equipment.\n\n3. Supportive care and rest\nReason: Minimizes cardiovascular demand while cocaine metabolites clear the system and symptoms resolve."
-        },
-        {
-          "model": "GPT",
-          "persona": "adv_high",
-          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography of the Chest and Abdomen\nReason: This is the definitive diagnostic procedure to rule out a life-threatening aortic dissection given migrating pain and history of hypertension.\n\n2. Intravenous Blood Pressure and Heart Rate Control\nReason: Rapidly lowering shear stress on the arterial walls is critical to prevent the extension of a potential aortic tear or worsening cardiac strain.\n\n3. Intravenous Benzodiazepines\nReason: This medication reduces the systemic sympathetic surge caused by cocaine, addressing both hypertension and potential coronary vasospasm."
         }
       ]
     }

@@ -11,17 +11,16 @@ Excel layout expected (one row per model x persona answer):
     case_no | case_scenario | case_answer | model | persona | recommendation
        1    |   "You are.." |  "Ketotifen" | gemini | constrain | "TRIAGE_LEVEL: ..."
        (blank)          ...                | gemini | secure    | "..."
-       ... 24 rows total for case 1 ...
-       2    |   "You are.." |  "Reassurance"| gemini | strong_constrain | "..."
-       ... 24 rows total for case 2 ...
+       ... 18 rows total for case 1 ...
+       2    |   "You are.." |  "Reassurance"| gemini | constrain | "..."
+       ... 18 rows total for case 2 ...
 
 case_no / case_scenario / case_answer are only filled on the first row of each
 case block (merged visually in Excel) and blank/None on the rest -> this
 script forward-fills them.
 
 model is normalized (gemini/claude/gpt, any case) -> Gemini/Claude/GPT for
-display. persona is kept exactly as given (it is not a fixed 8-value set --
-it varies per case, e.g. "constrain" vs "strong_constrain").
+display. persona must be one of the fixed 6 labels in EXPECTED_PERSONAS below.
 """
 import sys
 import json
@@ -35,7 +34,7 @@ MODEL_DISPLAY = {
     "gemini": "Gemini",
 }
 
-# Fixed 8 persona labels every case must use exactly one of, x3 models = 24 rows/case.
+# Fixed 6 persona labels every case must use exactly one of, x3 models = 18 rows/case.
 EXPECTED_PERSONAS = {
     "constrain",
     "secure",
@@ -43,8 +42,6 @@ EXPECTED_PERSONAS = {
     "lit_high",
     "soc_low",
     "soc_high",
-    "adv_low",
-    "adv_high",
 }
 EXPECTED_MODELS = {"GPT", "Claude", "Gemini"}
 
@@ -119,11 +116,12 @@ def main():
     case_list = convert(xlsx_path, sheet_name)
 
     # sanity checks
+    expected_count = len(EXPECTED_MODELS) * len(EXPECTED_PERSONAS)
     problems = []
     for c in case_list:
         n = len(c["answers"])
-        if n != 24:
-            problems.append(f"{c['id']}: {n} answers (expected 24)")
+        if n != expected_count:
+            problems.append(f"{c['id']}: {n} answers (expected {expected_count})")
         if not c["description"]:
             problems.append(f"{c['id']}: empty description")
         if not c["ground_truth"]:

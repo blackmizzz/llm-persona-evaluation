@@ -20,7 +20,7 @@ const CONFIG = {
   // true로 바꾸면 평가 화면에서 model/persona 라벨이 그대로 노출됨 (기본: 블라인드 평가)
   SHOW_MODEL_PERSONA: false,
 
-  ANSWERS_PER_CASE: 24,
+  ANSWERS_PER_CASE: 18, // 3 models x 6 personas
 
   // 평가 항목 정의 (Evaluation metrics.txt 기준 그대로 반영, 설명만 한글 번역).
   CRITERIA: [
@@ -91,7 +91,7 @@ const STORAGE_PREFIX = "llm_eval_v1::";
 
 /* ---------------------------------------------------------------------
    Tiny seeded PRNG (mulberry32) + string hash, so the shuffled order of
-   the 24 answers is stable per (evaluator, case) across reloads even
+   the answers is stable per (evaluator, case) across reloads even
    before anything is written to localStorage.
    --------------------------------------------------------------------- */
 function hashStringToSeed(str) {
@@ -187,9 +187,12 @@ function caseStatus(caseId) {
    Data loading
    --------------------------------------------------------------------- */
 async function loadData() {
+  // no-store: without this, browsers can silently keep serving a stale
+  // cases.json/assignments.json after we update the data, since neither
+  // GitHub Pages nor `python -m http.server` send cache-busting headers.
   const [casesRes, assignRes] = await Promise.all([
-    fetch(CONFIG.DATA_URL),
-    fetch(CONFIG.ASSIGNMENTS_URL),
+    fetch(CONFIG.DATA_URL, { cache: "no-store" }),
+    fetch(CONFIG.ASSIGNMENTS_URL, { cache: "no-store" }),
   ]);
   if (!casesRes.ok) throw new Error("cases 데이터를 불러오지 못했습니다: " + CONFIG.DATA_URL);
   if (!assignRes.ok) throw new Error("assignments 데이터를 불러오지 못했습니다: " + CONFIG.ASSIGNMENTS_URL);
@@ -491,7 +494,7 @@ function updateNextSaveButtons() {
   nextBtn.classList.toggle("hidden", isLast);
 
   const allDone = isCaseFullyRated(cp);
-  // Save only ever shows on the last (24th) answer -- everywhere else it's Prev/Next only.
+  // Save only ever shows on the last answer -- everywhere else it's Prev/Next only.
   saveBtn.classList.toggle("hidden", !isLast);
   const submitted = isSubmittedStatus(cp.status);
   saveBtn.disabled = !allDone;

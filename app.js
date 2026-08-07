@@ -494,7 +494,7 @@ function updateNextSaveButtons() {
   saveBtn.classList.toggle("hidden", !allDone && !isLast);
   const submitted = isSubmittedStatus(cp.status);
   saveBtn.disabled = !allDone;
-  saveBtn.textContent = submitted ? "제출됨 (재제출하려면 클릭)" : "전체 저장 (Save)";
+  saveBtn.textContent = submitted ? "제출됨 (재제출하려면 클릭)" : "전체 저장 (Save) 후 다음 시나리오로 이동";
 
   const msg = document.getElementById("caseActionMsg");
   if (!allDone) {

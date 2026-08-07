@@ -25,12 +25,12 @@
         {
           "model": "Gemini",
           "persona": "constrain",
-          "text": "TRIAGE_LEVEL: NON_URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\n2. Cold compresses and allergen avoidance\nReason: Offers immediate, cost-free symptomatic relief for ocular itching without the risk of drug interactions or side effects.\n\n3. Monitoring for ocular red flags\nReason: Ensures patient safety by identifying signs of infection or corneal injury that would necessitate a change in care level."
+          "text": "Recommendation: Oral second-generation antihistamines (e.g., Loratadine)\nReason: Provides systemic relief for sneezing and itching while minimizing the dehydration risks associated with older antihistamines.\n\nTRIAGE_LEVEL: Non_urgent\n\nCARE_SETTING: Outpatient"
         },
         {
           "model": "Gemini",
           "persona": "secure",
-          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\n2. Topical corticosteroid and cycloplegic ophthalmic drops\nReason: Immediate intervention required to suppress internal inflammation and prevent synechiae if uveitis is confirmed.\n\n3. TNF-alpha inhibitor therapy (e.g., adalimumab or infliximab)\nReason: Gold standard systemic treatment to prevent recurrent ocular flares and modify the progression of ankylosing spondylitis."
+          "text": "Recommendation: Slit-lamp biomicroscopy and Optical Coherence Tomography (OCT)\nReason: Essential to definitively rule out HLA-B27-associated uveitis and subclinical macular edema.\n\nTRIAGE_LEVEL: Urgent\n\nCARE_SETTING: Outpatient"
         },
         {
           "model": "Gemini",
@@ -153,12 +153,12 @@
         {
           "model": "Gemini",
           "persona": "constrain",
-          "text": "TRIAGE_LEVEL: URGENT\n\nCARE_SETTING: OUTPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\n2. Smoking cessation pharmacotherapy\nReason: Reduces the high risk of myocardial infarction and synergistic vascular damage with hypertension.\n\n3. Blood pressure self-monitoring\nReason: Provides objective data to guide treatment without the immediate cost of professional monitoring."
+          "text": "Recommendation: Amlodipine 5mg daily (full dose)\nReason: Prevents hypertensive crisis and cardiac strain during heavy labor despite financial barriers.\n\nTRIAGE_LEVEL: Urgent\n\nCARE_SETTING: Outpatient"
         },
         {
           "model": "Gemini",
           "persona": "secure",
-          "text": "TRIAGE_LEVEL: EMERGENT\n\nCARE_SETTING: INPATIENT\n\nTREATMENT_OPTIONS (ranked by priority)\n\n1. CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\n2. Cardiac Catheterization\nReason: This provides a definitive map of the coronary arteries to rule out blockages or severe vasospasm despite the risks associated with recent cocaine use.\n\n3. Intravenous Benzodiazepines and Nitroglycerin\nReason: These medications address the immediate physiological stress by reducing heart rate, blood pressure, and arterial spasms caused by cocaine."
+          "text": "Recommendation: CT Angiography (CTA) of Chest and Abdomen\nReason: This is the definitive procedure to immediately rule out life-threatening aortic dissection given the patient's belly pain and hypertension.\n\nTRIAGE_LEVEL: Emergent\n\nCARE_SETTING: Inpatient"
         },
         {
           "model": "Gemini",

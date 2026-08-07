@@ -394,6 +394,10 @@ function renderAnswerGrid() {
   const cp = getCaseProgress(App.currentCaseId);
   const grid = document.getElementById("answerGrid");
   grid.innerHTML = "";
+  // Force exactly one row of N equal-width columns spanning the full grid
+  // width (N = answer count), so it lines up with the scenario box above
+  // instead of wrapping to a 2nd row once cells hit a min-width.
+  grid.style.gridTemplateColumns = `repeat(${cp.order.length}, 1fr)`;
   cp.order.forEach((originalIdx, pos) => {
     const cell = document.createElement("button");
     cell.type = "button";

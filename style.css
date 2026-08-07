@@ -160,10 +160,9 @@ body {
 .answer-nav { margin-bottom: 14px; }
 .answer-grid {
   display: grid;
-  /* auto-fit (not auto-fill) collapses empty tracks so the actual cells
-     stretch to fill the row's full width -- matches the scenario box above
-     instead of clumping on the left with fewer items (e.g. 18 vs 24). */
-  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+  /* grid-template-columns is set inline by app.js to repeat(N, 1fr), N =
+     answer count, so all cells always sit in a single row spanning the
+     full width of the scenario box above -- never wraps to a 2nd row. */
   gap: 8px;
 }
 .answer-cell {

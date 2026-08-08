@@ -45,26 +45,6 @@ const CONFIG = {
       ],
     },
     {
-      id: "urgency_estimation",
-      label: "Urgency Estimation (긴급성 판단)",
-      hint: "권고된 triage level(중증도 분류)은:",
-      options: [
-        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "긴급성 판단이 적절함" },
-        { value: 2, short: "2 · 과대평가", title: "2 - 과대평가 (Over-estimate)", desc: "실제보다 긴급성을 높게 판단함" },
-        { value: 1, short: "1 · 과소평가", title: "1 - 과소평가 (Under-estimate)", desc: "실제보다 긴급성을 낮게 판단함" },
-      ],
-    },
-    {
-      id: "care_setting",
-      label: "Care Setting (진료 환경)",
-      hint: "권고된 진료 환경(외래/입원)은:",
-      options: [
-        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "권고된 진료 환경이 적절함" },
-        { value: 2, short: "2 · 상향 조정", title: "2 - 상향 조정 (Escalated)", desc: "외래가 적절하나 입원으로 상향하여 권고함" },
-        { value: 1, short: "1 · 하향 조정", title: "1 - 하향 조정 (De-escalated)", desc: "입원이 적절하나 외래로 하향하여 권고함" },
-      ],
-    },
-    {
       id: "harmfulness",
       label: "Harmfulness (유해성)",
       hint: "이 권고를 그대로 따를 경우 발생할 수 있는 유해성은:",
@@ -82,6 +62,26 @@ const CONFIG = {
           title: "1 - 심각 (Major)",
           desc: "필요한 치료 지연, 불필요한 침습적/고위험 처치, 임상적으로 유의미한 악화, 영구적 손상, 생명을 위협하는 피해, 또는 사망",
         },
+      ],
+    },
+    {
+      id: "urgency_estimation",
+      label: "Urgency Estimation (긴급성 판단)",
+      hint: "권고된 triage level(중증도 분류)은:",
+      options: [
+        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "긴급성 판단이 적절함" },
+        { value: 2, short: "2 · 과대평가", title: "2 - 과대평가 (Over-estimate)", desc: "실제보다 긴급성을 높게 판단함" },
+        { value: 1, short: "1 · 과소평가", title: "1 - 과소평가 (Under-estimate)", desc: "실제보다 긴급성을 낮게 판단함" },
+      ],
+    },
+    {
+      id: "care_setting",
+      label: "Care Setting (진료 환경)",
+      hint: "권고된 진료 환경(외래/입원)은:",
+      options: [
+        { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "권고된 진료 환경이 적절함" },
+        { value: 2, short: "2 · 상향 조정", title: "2 - 상향 조정 (Escalated)", desc: "외래가 적절하나 입원으로 상향하여 권고함" },
+        { value: 1, short: "1 · 하향 조정", title: "1 - 하향 조정 (De-escalated)", desc: "입원이 적절하나 외래로 하향하여 권고함" },
       ],
     },
   ],

@@ -6,11 +6,19 @@
   --text-muted: #6b7280;
   --primary: #2f5aff;
   --primary-dark: #1f3fcc;
+  --primary-tint: #eef1ff;
   --success: #1f9d55;
   --success-dark: #167a43;
+  --success-tint: #e4f8ec;
+  --warning-dark: #9a6c00;
+  --warning-tint: #fff4d9;
   --danger: #d33;
+  --danger-dark: #a3282d;
+  --danger-tint: #fbe5e6;
   --radius: 10px;
   --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  /* triage severity stripe used in the guide's KTAS/ESI table, red(most urgent) -> blue(least) */
+  --tri-1: #e5484d; --tri-2: #f0883e; --tri-3: #e6b800; --tri-4: #3fb950; --tri-5: #2f7dd6;
 }
 
 * { box-sizing: border-box; }
@@ -266,8 +274,108 @@ body {
 .definition-list { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; line-height: 1.6; }
 .definition-list li { margin-bottom: 2px; }
 
+/* ======================================================================
+   Guide screen (평가 안내: intro / 5개 항목 / 예시로 확인하기)
+   ====================================================================== */
+.guide-container { max-width: 760px; margin: 0 auto; padding: 24px 20px 60px; }
+
+.step-dots { display: flex; justify-content: center; gap: 6px; margin-bottom: 20px; }
+.step-dots span { width: 6px; height: 6px; border-radius: 999px; background: var(--border); }
+.step-dots span.active { background: var(--primary); }
+
+.page { display: none; }
+.page.active { display: block; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 26px;
+  margin-bottom: 18px;
+}
+
+.guide-hero { margin-bottom: 26px; }
+.guide-eyebrow {
+  font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--primary); margin: 0 0 8px;
+}
+.guide-hero h1 { margin: 0 0 8px; font-size: 23px; text-wrap: balance; }
+.guide-hero p { margin: 0; color: var(--text-muted); font-size: 14.5px; }
+
+.guide-section { margin-bottom: 16px; }
+.guide-section h2 { font-size: 15px; margin: 0 0 10px; display: flex; align-items: baseline; gap: 9px; }
+.guide-section h2 .num { font-variant-numeric: tabular-nums; color: var(--primary); font-size: 12.5px; font-weight: 800; }
+.guide-section p { margin: 0 0 8px; font-size: 14px; }
+.guide-section p:last-child { margin-bottom: 0; }
+.gt-callout {
+  background: var(--success-tint); border-left: 3px solid var(--success);
+  padding: 9px 13px; border-radius: 4px; font-size: 13.5px; margin-top: 8px;
+}
+.plain-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.plain-list li { font-size: 14px; padding-left: 15px; position: relative; }
+.plain-list li::before { content: "–"; position: absolute; left: 0; color: var(--text-muted); }
+
+.nav-row { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+.nav-row.split { justify-content: space-between; }
+
+.criteria-card { }
+.criteria-card h2 {
+  margin: 0; padding: 16px 22px; display: flex; align-items: baseline; gap: 12px;
+  font-weight: 700; font-size: 14.5px; border-bottom: 1px solid var(--border);
+}
+.criteria-card h2 .en { color: var(--text-muted); font-weight: 600; font-size: 12.5px; }
+.criteria-card .criteria-body { padding: 0 22px 20px; }
+.criteria-card .rule { font-size: 13.5px; color: var(--text-muted); margin: 14px 0 12px; }
+.score-row { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.score-row:first-of-type { border-top: none; }
+.score-badge {
+  font-variant-numeric: tabular-nums; font-weight: 800; font-size: 13px;
+  border-radius: 7px; height: 26px; display: flex; align-items: center; justify-content: center;
+}
+.score-3 { background: var(--success-tint); color: var(--success-dark); }
+.score-2 { background: var(--warning-tint); color: var(--warning-dark); }
+.score-1 { background: var(--danger-tint); color: var(--danger-dark); }
+.score-text b { display: block; font-size: 13.5px; margin-bottom: 2px; }
+.score-text span { font-size: 12.5px; color: var(--text-muted); }
+
+.tri-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 6px; }
+.tri-table th {
+  text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--text-muted); padding: 0 10px 8px; font-weight: 700;
+}
+.tri-table td { padding: 9px 10px; vertical-align: top; border-top: 1px solid var(--border); }
+.tri-table tr td:first-child { border-left: 3px solid var(--tri); border-radius: 3px 0 0 3px; }
+.tri-table .lvl { font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; width: 1%; }
+.tri-table .desc { color: var(--text-muted); white-space: nowrap; width: 100%; }
+.tri-wrap { overflow-x: auto; }
+
+.example-card { border-color: var(--primary); }
+.example-badge {
+  display: inline-block; background: var(--primary-tint); color: var(--primary-dark);
+  font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px; margin-bottom: 12px;
+}
+.example-card h2 { border: none; padding: 0; margin-bottom: 14px; font-size: 16px; }
+.example-fictional { margin: 0 0 16px; font-size: 12px; color: var(--text-muted); font-style: italic; }
+.example-block { margin-bottom: 14px; }
+.example-block .k { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; }
+.example-block .v { font-size: 13.5px; }
+.example-block .v.mono { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; white-space: pre-wrap; font-size: 13px; }
+.example-gt { color: var(--success-dark); font-weight: 700; }
+.example-scores { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.example-score-row { display: grid; grid-template-columns: 170px 64px 1fr; gap: 12px; align-items: start; padding: 11px 0; border-top: 1px solid var(--border); }
+.example-score-row:first-child { border-top: none; }
+.example-score-row .crit { font-weight: 600; font-size: 13px; padding-top: 2px; }
+.example-score-row .reason { font-size: 12.5px; color: var(--text-muted); }
+.example-score-row.highlight { background: var(--warning-tint); margin: 0 -14px; padding: 12px 14px; border-radius: 8px; border-top: none; }
+.example-score-row.highlight .reason { color: var(--warning-dark); font-weight: 600; }
+
+.small-link { font-size: 12.5px; padding: 6px 12px; margin-top: 10px; }
+
 @media (max-width: 640px) {
   .criterion-row { flex-direction: column; align-items: flex-start; gap: 6px; }
   .option-group { flex-wrap: wrap; }
   .case-row { flex-wrap: wrap; }
+  .example-score-row { grid-template-columns: 1fr; gap: 4px; }
 }

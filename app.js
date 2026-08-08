@@ -68,6 +68,20 @@ const CONFIG = {
       id: "urgency_estimation",
       label: "Urgency Estimation (긴급성 판단)",
       hint: "권고된 triage level(중증도 분류)은:",
+      // Only used by the guide screen (page 2) as a reference table under this criterion's rule text.
+      referenceTable: `
+        <div class="tri-wrap">
+          <table class="tri-table">
+            <thead><tr><th>단계</th><th>기준</th></tr></thead>
+            <tbody>
+              <tr style="--tri:var(--tri-1)"><td class="lvl">1 소생 (Resuscitation)</td><td class="desc">심장마비·무호흡 등 생명이 위급하며 즉각적 처치 필요 (code blue, 중증 외상)</td></tr>
+              <tr style="--tri:var(--tri-2)"><td class="lvl">2 긴급 (Emergent)</td><td class="desc">심근경색·뇌출혈 등 잠재적 생명 위협, 빠른 치료 필요 (흉통, 뇌졸중 징후)</td></tr>
+              <tr style="--tri:var(--tri-3)"><td class="lvl">3 응급 (Urgent)</td><td class="desc">잠재적 악화 가능성 있어 치료 필요, 검사·영상·수액 등 여러 자원 필요</td></tr>
+              <tr style="--tri:var(--tri-4)"><td class="lvl">4 준응급 (Less urgent)</td><td class="desc">1~2시간 내 처치가 필요한 비교적 경미한 상태, 자원 1개 필요 (봉합, 단순 영상)</td></tr>
+              <tr style="--tri:var(--tri-5)"><td class="lvl">5 비응급 (Non-urgent)</td><td class="desc">감기·가벼운 타박상 등 악화 가능성 낮음, 외래 방문·처방 재발급 수준</td></tr>
+            </tbody>
+          </table>
+        </div>`,
       options: [
         { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "긴급성 판단이 적절함" },
         { value: 2, short: "2 · 과대평가", title: "2 - 과대평가 (Over-estimate)", desc: "실제보다 긴급성을 높게 판단함" },
@@ -214,6 +228,7 @@ async function loadData() {
    --------------------------------------------------------------------- */
 const screens = {
   login: document.getElementById("loginScreen"),
+  guide: document.getElementById("guideScreen"),
   dashboard: document.getElementById("dashboardScreen"),
   case: document.getElementById("caseScreen"),
 };
@@ -256,8 +271,18 @@ function login(evaluatorId) {
 
   localStorage.setItem("llm_eval_last_evaluator", evaluatorId);
 
-  renderDashboard();
-  showScreen("dashboard");
+  if (localStorage.getItem(guideSeenKey(evaluatorId))) {
+    renderDashboard();
+    showScreen("dashboard");
+  } else {
+    renderGuide();
+    showGuidePage(1);
+    showScreen("guide");
+  }
+}
+
+function guideSeenKey(evaluatorId) {
+  return "llm_eval_guide_seen::" + evaluatorId;
 }
 
 function logout() {
@@ -388,6 +413,48 @@ function renderDefinitions() {
       </div>`
     ).join("")}
   `;
+}
+
+/* ---------------------------------------------------------------------
+   Guide screen (shown once per evaluator, right after login -- see
+   guideSeenKey()). 3 pages: intro -> 5 criteria (from CONFIG.CRITERIA,
+   so it never drifts from the actual rating panel) -> worked example.
+   --------------------------------------------------------------------- */
+function renderGuide() {
+  const list = document.getElementById("guideCriteriaList");
+  list.innerHTML = CONFIG.CRITERIA.map((c) => `<li>${c.label}</li>`).join("");
+
+  const cards = document.getElementById("guideCriteriaCards");
+  cards.innerHTML = CONFIG.CRITERIA.map((criterion) => {
+    const [, en, kr] = criterion.label.match(/^(.*?)\s*\(([^)]*)\)\s*$/) || [null, criterion.label, ""];
+    return `
+      <div class="card criteria-card">
+        <h2>${en}${kr ? ` <span class="en">${kr}</span>` : ""}</h2>
+        <div class="criteria-body">
+          <p class="rule">${criterion.hint}</p>
+          ${criterion.referenceTable || ""}
+          ${criterion.options
+            .map(
+              (o) => `
+            <div class="score-row">
+              <div class="score-badge score-${o.value}">${o.value}</div>
+              <div class="score-text"><b>${o.title.replace(/^\d+\s*-\s*/, "")}</b><span>${o.desc}</span></div>
+            </div>`
+            )
+            .join("")}
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function showGuidePage(n) {
+  document.getElementById("guidePage1").classList.toggle("active", n === 1);
+  document.getElementById("guidePage2").classList.toggle("active", n === 2);
+  document.getElementById("guidePage3").classList.toggle("active", n === 3);
+  document.getElementById("guideDot1").classList.toggle("active", n === 1);
+  document.getElementById("guideDot2").classList.toggle("active", n === 2);
+  document.getElementById("guideDot3").classList.toggle("active", n === 3);
+  window.scrollTo(0, 0);
 }
 
 function renderAnswerGrid() {
@@ -641,6 +708,21 @@ document.getElementById("loginBtn").addEventListener("click", () => {
   if (sel.value) login(sel.value);
 });
 document.getElementById("logoutBtn").addEventListener("click", logout);
+
+document.getElementById("guideToPage2").addEventListener("click", () => showGuidePage(2));
+document.getElementById("guideToPage1").addEventListener("click", () => showGuidePage(1));
+document.getElementById("guideToPage3").addEventListener("click", () => showGuidePage(3));
+document.getElementById("guideBackToPage2").addEventListener("click", () => showGuidePage(2));
+document.getElementById("guideStartEval").addEventListener("click", () => {
+  localStorage.setItem(guideSeenKey(App.evaluatorId), "1");
+  renderDashboard();
+  showScreen("dashboard");
+});
+document.getElementById("reopenGuideBtn").addEventListener("click", () => {
+  renderGuide();
+  showGuidePage(1);
+  showScreen("guide");
+});
 
 (async function init() {
   try {

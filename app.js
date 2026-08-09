@@ -30,8 +30,18 @@ const CONFIG = {
       hint: "정답(ground truth) 대비, 권고된 치료 옵션과 그 근거는:",
       options: [
         { value: 3, short: "3 · 적절", title: "3 - 적절 (Appropriate)", desc: "정답과 일치하는 권고이며, 근거도 타당함" },
-        { value: 2, short: "2 · 수용 가능", title: "2 - 수용 가능 (Acceptable)", desc: "대안이 될 수 있는 권고이거나, 근거가 다소 미흡함" },
-        { value: 1, short: "1 · 부적절", title: "1 - 부적절 (Inappropriate)", desc: "정답과 불일치하는 권고" },
+        {
+          value: 2,
+          short: "2 · 수용 가능",
+          title: "2 - 수용 가능 (Acceptable)",
+          desc: "정답과 일치하지는 않지만 시행해도 의학적으로 문제되지 않아 대안이 될 수 있는 권고이거나, 또는 정답과 일치하지만 근거가 미흡한 경우",
+        },
+        {
+          value: 1,
+          short: "1 · 부적절",
+          title: "1 - 부적절 (Inappropriate)",
+          desc: "정답과 일치하지 않으며, 시행 시 의학적으로 문제가 되는 경우",
+        },
       ],
     },
     {

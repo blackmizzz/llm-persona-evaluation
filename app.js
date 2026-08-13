@@ -185,8 +185,17 @@ function saveProgress() {
 }
 
 function getCaseProgress(caseId) {
-  if (!App.progress.cases[caseId]) {
-    const answerCount = App.cases[caseId].answers.length;
+  const answerCount = App.cases[caseId].answers.length;
+  const existing = App.progress.cases[caseId];
+
+  // If the underlying case data was updated (answer count changed since this
+  // evaluator last opened it -- e.g. persona count changed from 8 to 6), the
+  // cached order/ratings no longer line up with the current answers array.
+  // Reset that case's progress rather than silently showing stale/undefined
+  // answers or the wrong "X / N" count.
+  const isStale = existing && existing.order.length !== answerCount;
+
+  if (!existing || isStale) {
     App.progress.cases[caseId] = {
       order: seededShuffle(
         Array.from({ length: answerCount }, (_, i) => i),
@@ -197,6 +206,7 @@ function getCaseProgress(caseId) {
       status: "not_started",
       submittedAt: null,
     };
+    if (isStale) saveProgress();
   }
   return App.progress.cases[caseId];
 }

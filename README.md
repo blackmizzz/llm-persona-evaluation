@@ -128,6 +128,9 @@ GitHub Pages, Netlify, Vercel, 사내 웹서버 등 아무 정적 호스팅에 �
 - `CRITERIA`: 5개 평가 항목의 라벨/설명 문구를 자유롭게 수정 가능 (1/2/3점 의미는 연구팀 rubric에 맞게 다시 쓰는 것을 권장).
 - `SHEETS_WEBHOOK_URL`, `SHARED_SECRET`: 위 5단계에서 얻은 값.
 
+**`app.js`/`style.css`를 수정할 때마다**: `index.html`의 `app.js?v=2`, `style.css?v=2` 뒤 숫자를 1씩 올리세요.
+GitHub Pages(10분)와 브라우저 모두 이 두 파일을 캐싱하는데, 파일 내용이 바뀌어도 URL이 그대로면 오래된 캐시를 계속 보여줄 수 있습니다. 버전 숫자를 올리면 URL 자체가 바뀌어서 강제로 새로 받아옵니다. (`data/*.json`은 `fetch`에서 `cache: "no-store"`로 이미 처리되어 있어 해당 없음.)
+
 ## 8. 평가자 사용 흐름
 
 1. 로그인 화면에서 본인 ID 선택 → 시작하기

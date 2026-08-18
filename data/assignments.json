@@ -1,17 +1,17 @@
 {
-  "_comment": "Evaluator assignment file. evaluator id -> display name + list of case_ids assigned to them. Overlap between evaluators (shared cases) enables inter-rater reliability checks later. Currently only case_001/case_002 exist (from Case example.xlsx) -- extend case_ids as more cases are added to data/cases.json.",
+  "_comment": "PLACEHOLDER -- data/cases.json now has the real 226 cases (ids case_002..case_524, gaps are normal, they follow the source file's case_no), but the real evaluator roster/assignment isn't set up yet. These 3 sample evaluators are only wired to the first 2 real cases so the app stays testable. Replace this whole file once the real evaluator list + per-evaluator case_ids are decided.",
   "evaluators": {
     "eval_kim": {
       "name": "김OO",
-      "case_ids": ["case_001", "case_002"]
+      "case_ids": ["case_002", "case_003"]
     },
     "eval_lee": {
       "name": "이OO",
-      "case_ids": ["case_001", "case_002"]
+      "case_ids": ["case_002", "case_003"]
     },
     "eval_park": {
       "name": "박OO",
-      "case_ids": ["case_002"]
+      "case_ids": ["case_003"]
     }
   }
 }
